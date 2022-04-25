@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %} Quiz {% endblock %}
+
+{% block content %} 
+<main> 
+    <section class="section-padding">
+        <h1 class="display-6">Each question has 5 marks. Your result will be posted on portal.</h1>
+        <!-- <p class=" mb-3" style="color:red;">Please checkmark only one option. Checking multiple options will be considered as false.</p> -->
+        <div class="row">
+            <div class="col">
+                <form method="POST">
+                    <div class="quiz-container" id="style-1">
+                        <ol>
+                            {% for question in questions %} 
+                            <li class="mb-4">
+                                <p class="lead" style="color: black; font-weight: 300;">{{question.question}}</p>  
+                                <ul class="">
+                                    {% for choice in question.choices %} 
+                                    <li class="question-choice" style="list-style: lower-alpha !important; padding-left: 15px; margin-bottom: 3px;">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="{{question.id}}" id="{{question.id}}" value="{{choice}},{{question.answer}}">
+                                            <label class="form-check-label" for="{{question.id}}">{{choice}}</label>
+                                        </div>
+                                    </li> 
+                                    {% endfor %} 
+                                </ul> 
+                            </li>
+                            {% endfor %}   
+                        </ol>
+                    </div> 
+                    <button class="btn btn-success mt-3">Finish</button> 
+                </form>
+            </div>
+        </div>
+    </section> 
+</main>
+{% endblock %}
+

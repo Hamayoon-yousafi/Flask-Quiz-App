@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %} Student Marks {% endblock %}
+
+{% block content %} 
+<main> 
+    <section class="section-padding">
+        <h3 class="display-4 mb-5">Quiz Results for {{student.name}}:</h3> 
+        <div class="bt-5"> 
+            {% if not marks %}
+            <p>{{student.name}} has not taken any quizes yet.</p>
+            {% else %}
+            <table class="table">
+                <thead>
+                    <tr> 
+                        <th scope="col">Result</th>  
+                        <th scope="col">Out of</th>
+                        <th scope="col">Quiz Taken on</th> 
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for record in marks %}
+                    {% if not subject in current_user.subjects %} 
+                    <tr>
+                        <td>{{record.total_marks.split("out of")[0].strip()}}</td>
+                        <td>{{record.total_marks.split("out of")[1].strip()}}</td>
+                        <td>{{record.quiz_taken_date.strftime("%c")}}</td>  
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table> 
+            {% endif %}  
+             
+        </div>
+
+    </section> 
+</main>
+{% endblock %}

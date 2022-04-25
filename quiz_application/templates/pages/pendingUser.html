@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %} Home {% endblock %}
+
+{% block content %} 
+<main> 
+    <section class="section-padding">
+        <h1>Welcome {{ user.name }}!</h1>
+        <h4 class="display-5">Your account is pending to be aproved by the Admin, Thank you for your patience.</h4> 
+    </section> 
+</main>
+{% endblock %}

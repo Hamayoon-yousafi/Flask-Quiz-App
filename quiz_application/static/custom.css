@@ -1,0 +1,148 @@
+body {
+    background: #e5e5e542;
+}
+
+.img-thumbnail{
+    border: none !important;
+  }
+  
+  .p {
+    color: #4a4646 !important;
+      font-weight: 300 !important;
+  }
+  
+  .greeting {
+      font-weight: 500;
+      text-align: -webkit-match-parent;
+      text-transform: capitalize;
+      font-size: 6rem;
+      font-family: inherit;
+  }
+  
+  .container-for-svg {
+      display: flex;
+      justify-content: center;
+      align-items: baseline;
+  }
+  
+  .svgs {
+    position: absolute;
+    opacity: 0.5;
+    height: 112px;
+  }
+  
+  .question_mark{
+    left: 38%;
+    bottom: 24%;
+    transform: rotate(-6deg);    
+  }
+  
+  .searching{
+    top: 29%;
+    left: 9%;
+    transform: rotate(6deg);
+  }
+
+.message_area{
+    position: absolute;
+      top: 88px;
+      right: 0;
+      left: 0;
+      text-align: center;
+  }
+  
+  .signup {
+    margin-right: 0 !important;
+  }
+  
+  .actions { 
+      display: flex;
+      justify-content: space-between;
+      width: 165px;
+  }
+  
+  .user_delete_btn {
+    background-color: red !important;
+  }
+  
+  .course-container {
+    width: 41%; 
+    height: auto; 
+    padding: 20px; 
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  } 
+  
+  .course-area {
+    border: solid 1px silver;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    flex-wrap: wrap;
+    height: auto;
+    padding: 20px 0px;
+  }
+  
+  .quiz-container {
+    background: white;
+    border-radius: 10px;
+    padding: 30px;
+    height: 65vh;
+    overflow: scroll;
+    overflow-x: auto;
+  }
+  
+  .question-choice {
+      list-style: lower-alpha !important;
+      padding-left: 15px;
+      margin-bottom: 3px;
+  }
+  
+  #style-1::-webkit-scrollbar-track
+  {
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+      border-radius: 10px;
+      background-color: #F5F5F5;
+  }
+  
+  #style-1::-webkit-scrollbar
+  {
+      width: 12px;
+      background-color: #F5F5F5;
+  }
+  
+  #style-1::-webkit-scrollbar-thumb
+  {
+      border-radius: 10px;
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+      background-color: #555;
+  }
+
+  .modal-custom{
+      right: 255px !important;
+      left: -295px !important;
+  }
+
+  .modal-content-custom {
+      width: 90rem !important;
+      padding: 0 40px;
+  }
+
+  .modal-body-custom {
+    position: relative;
+    flex: 1 1 auto;
+    padding: 1rem; 
+    width: 83%;
+  }
+
+  .modal-footer-custom{
+      display: block !important;
+  }
+
+  .navbar-expand-lg .navbar-nav .nav-link {
+    display: inline-block !important;
+    padding: 0;
+    margin-right: 0.5rem !important;
+    margin-left: 1rem !important;
+}

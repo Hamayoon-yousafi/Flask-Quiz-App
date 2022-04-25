@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %} Home {% endblock %}
+
+{% block content %} 
+<main>
+  <img class="svgs question_mark img-thumbnail" src="{{url_for('static', filename='/icons/question.svg')}}" alt="">
+  <img class="svgs searching img-thumbnail" src="{{url_for('static', filename='/icons/searching.svg')}}" alt="">
+  <section class="section-padding">
+    <div class="container">
+        <div class="row py-5 mt-5"> 
+            <div class="col-md-6">  
+                    <h1 class="display-5 greeting">Welcome to online quiz!</h1> 
+                    <p class="lead mt-2">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore distinctio eius dolor minima, dolorem eveniet at. Consequatur, assumenda! Iste maxime ea in pariatur facilis fugit perspiciatis quo quos nulla eius?
+                    </p>
+                    <div class=""> 
+                      <button type="button" class="btn btn-primary">Take Quiz!</button>
+                    </div>
+                     
+            </div>
+            <div class="col-md-6 container-for-svg">
+                <img class="img-thumbnail" src="{{ url_for('static', filename='/icons/exam.svg') }}" alt=""> 
+            </div> 
+        </div>
+    </div>
+</section> 
+</main>
+{% endblock %}

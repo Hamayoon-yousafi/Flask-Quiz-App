@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %} Create Subject {% endblock %}
+
+{% block content %} 
+
+<main>
+
+    <section class="sign-in-form section-padding">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-8 mx-auto col-12">
+
+                    <h1 class="hero-title text-center mb-5">Create Subject</h1>  
+
+                    <div class="row">
+                        <div class="col-lg-8 col-11 mx-auto">
+                            <form method="POST">
+                                <div class="form-floating">
+                                    <input type="text" name="name" id="name" class="form-control" placeholder="Enter Subject Name" value="" >
+                                    <label for="name">Subject Name</label>
+                                </div> 
+
+                                <div class="form-floating my-4">
+                                    <input type="text" name="about" id="name" class="form-control" placeholder="Enter About" value="">
+                                    <label for="name">About Subject</label>
+                                </div>   
+
+                                <button type="submit" class="btn custom-btn form-control mt-4 mb-3">
+                                    Create
+                                </button>   
+                            </form>
+                        </div>
+                    </div>
+                    
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</main>
+
+{% endblock %}

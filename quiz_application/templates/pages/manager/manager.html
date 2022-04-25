@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %} Manage Subjects {% endblock %}
+
+{% block content %} 
+<main> 
+    <section class="section-padding">
+        <h3 class="display-4 mb-5">Welcome, {{ user.name }}</h3> 
+        
+        <div class="bt-5">
+            <a class="btn btn-success mb-3" href="/create-subject">Create Subject</a>
+            <p class="lead" style="font-weight: 500;">
+                List of all Subjects: 
+            </p>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Subject</th> 
+                        <th scope="col">About this Subject</th> 
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for subject in subjects %}
+                    <tr>
+                        <th scope="row">{{subject.id}}</th>
+                        <td>{{subject.name}}</td> 
+                        <td>{{subject.about}}</td>  
+                        <td>
+                            <div class="actions">  
+                                <a class="btn btn-success" href="/update-subject/{{subject.id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> 
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %} 
+                </tbody>
+            </table>
+        </div>
+
+    </section> 
+</main>
+{% endblock %}
