@@ -158,3 +158,10 @@ body {
   justify-content: space-between; 
   margin-bottom: 10px;
 }
+
+.icon-buttons {
+    border: none;
+    width: 50px;
+    font-size: 21px;
+    padding: 0px;
+}

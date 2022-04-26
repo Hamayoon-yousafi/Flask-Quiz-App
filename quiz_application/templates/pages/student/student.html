@@ -12,14 +12,14 @@
                 </p>
                  <!-- Button trigger modal -->
                 <div>
-                    <button type="button" class="btn btn-success mt-3 mr-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                        Enroll
+                    <button type="button" class="btn btn-outline-success mt-3 mr-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        Enroll 
                     </button>
                     {% if not subjects %} 
                     <p>Please enroll in subjects to be able to take quiz.</p>
                     {% else %}
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary mt-3" style="margin-left: 10px;" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <button type="button" class="btn btn-outline-primary mt-3" style="margin-left: 10px;" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Take Quiz
                     </button>
                 </div>
@@ -106,7 +106,7 @@
                         <td>{{subject.about}}</td>   
                         <td>
                             <div class="actions">  
-                                <a class="btn btn-danger" href="/drop-course/{{subject.id}}/{{current_user.id}}">Drop</a> 
+                                <a class="btn icon-buttons btn-outline-danger" href="/drop-course/{{subject.id}}/{{current_user.id}}"><i class="fa fa-times" aria-hidden="true"></i></a> 
                             </div>
                         </td>
                     </tr>
