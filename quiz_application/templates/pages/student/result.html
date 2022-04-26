@@ -4,12 +4,8 @@
 {% block content %} 
 <main> 
     <section class="section-padding">
-        <h3 class="display-4 mb-5">Marks</h3> 
-        <div class="bt-5">
-            <p class="lead" style="font-weight: 500;">
-                All your marks from all the quizes: 
-            </p>  
-                
+        <h3 class="display-4 mb-5">Your Marks:</h3> 
+        <div class="table-design bt-5"> 
                 <table class="table">
                     <thead>
                         <tr> 
@@ -29,8 +25,7 @@
                         {% endif %}
                         {% endfor %}
                     </tbody>
-                </table> 
-            </form> 
+                </table>  
         </div>
 
     </section> 

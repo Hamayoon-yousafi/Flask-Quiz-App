@@ -3,65 +3,65 @@
 
 {% block content %} 
 <main> 
-    <section class="section-padding">
-        {% if marks %}
-        <h5 class="mb-2"><a href="/results" class="active-link mb-3" style="text-decoration: underline;color: #8181db;">See quiz results here... </a></h5>
-        {% endif %}
-        {% if not subjects %} 
-        <p>Please enroll in subjects to be able to take quiz.</p>
-        {% else %}
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary mb-5" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Take Quiz
-        </button>
-        
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Start Quiz?</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <section class="section-padding">  
+        <h1 class="display-4 mb-5">Welcome, {{ user.name }}</h1>  
+        <div class="table-design bt-5">
+            <div class="table-design-header">
+                <p class="lead" style="font-weight: 500;">
+                    List of subjects you have enrolled in: 
+                </p>
+                 <!-- Button trigger modal -->
+                <div>
+                    <button type="button" class="btn btn-success mt-3 mr-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        Enroll
+                    </button>
+                    {% if not subjects %} 
+                    <p>Please enroll in subjects to be able to take quiz.</p>
+                    {% else %}
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary mt-3" style="margin-left: 10px;" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Take Quiz
+                    </button>
                 </div>
-                <div class="modal-body">  
-                    <p>
-                        The number of questions may vary. Each question has 5 marks. Make sure you are ready to start quiz.
-                    </p>
+            
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Start Quiz?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">  
+                        <p>
+                            The number of questions may vary. Each question has 5 marks. Make sure you are ready to start quiz.
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a href="/quiz" type="button" class="btn btn-primary">Continue</a>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <a href="/quiz" type="button" class="btn btn-primary">Continue</a>
                 </div>
             </div>
+            {% endif %}
             </div>
-        </div>
-        {% endif %}
-        
-        <div class="bt-5">
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                Enroll
-            </button>
-  
             <!-- Modal -->
             <div class="modal modal-custom fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog">
                 <div class="modal-content modal-content-custom ">
                     <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Subjects</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">All Available Subjects:</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body modal-body-custom">
-                    <div class="bt-5">
-                        <p class="lead" style="font-weight: 500;">
-                            Below are the courses offered:  
-                        </p>  
+                    <div class="bt-5">  
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th scope="col">ID</th>
-                                        <th scope="col">Course</th> 
-                                        <th scope="col">About</th>   
+                                        <th scope="col">Subject ID</th>
+                                        <th scope="col">Subject Name</th> 
+                                        <th scope="col">Subject About</th>   
                                         <th scope="col">Actions</th>
                                     </tr>
                                 </thead>
@@ -69,7 +69,7 @@
                                     {% for subject in all_subjects %}
                                     {% if not subject in current_user.subjects %} 
                                     <tr>
-                                        <th scope="row">{{subject.id}}</th>
+                                        <td scope="row">{{subject.id}}</td>
                                         <td>{{subject.name}}</td> 
                                         <td>{{subject.about}}</td>   
                                         <td>
@@ -85,30 +85,23 @@
                                 </tbody>
                             </table> 
                     </div>
-                    </div>
-                    <div class="modal-footer modal-footer-custom">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> 
-                    </div>
+                    </div> 
                 </div>
                 </div>
             </div>
-
-            <p class="lead" style="font-weight: 500;">
-                List of subjects you have enrolled in: 
-            </p>
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Course</th> 
-                        <th scope="col">About</th>   
+                        <th scope="col">Subject ID</th>
+                        <th scope="col">Subject Name</th> 
+                        <th scope="col">Subject About</th>   
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody> 
                     {% for subject in subjects %}
                     <tr>
-                        <th scope="row">{{subject.id}}</th>
+                        <td scope="row">{{subject.id}}</td>
                         <td>{{subject.name}}</td> 
                         <td>{{subject.about}}</td>   
                         <td>

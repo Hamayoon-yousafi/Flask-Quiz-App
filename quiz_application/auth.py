@@ -57,6 +57,9 @@ def sign_up():
             
     return render_template('auth/sign_up.html', user = current_user)
 
+
+# protecting routes and redirecting users to particular routes.
+
 def redirecting_users(role):
     if role == "Admin":
         return redirect('/admin')

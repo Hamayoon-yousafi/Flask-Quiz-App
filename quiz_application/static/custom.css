@@ -125,15 +125,14 @@ body {
   }
 
   .modal-content-custom {
-      width: 90rem !important;
-      padding: 0 40px;
+    width: 74rem !important;
+    padding: 0 40px;
   }
 
   .modal-body-custom {
     position: relative;
     flex: 1 1 auto;
     padding: 1rem; 
-    width: 83%;
   }
 
   .modal-footer-custom{
@@ -145,4 +144,17 @@ body {
     padding: 0;
     margin-right: 0.5rem !important;
     margin-left: 1rem !important;
+}
+
+.table-design{
+    border: solid 0.5px #cfcfcf6e;
+    padding: 40px;
+    border-radius: 13px;
+}
+
+.table-design-header{
+  width: 90%;
+  display: flex;
+  justify-content: space-between; 
+  margin-bottom: 10px;
 }

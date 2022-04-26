@@ -4,11 +4,14 @@
 {% block content %} 
 <main> 
     <section class="section-padding">
-        <h3 class="display-4 mb-5">Quiz Results for {{student.name}}:</h3> 
-        <div class="bt-5"> 
+        <h3 class="display-4 mb-5">Results for {{student.name}}:</h3> 
+        <div class="table-design bt-5"> 
             {% if not marks %}
             <p>{{student.name}} has not taken any quizes yet.</p>
             {% else %}
+            <p class="lead" style="font-weight: 500;">
+                Total results for all the quizes taken by {{student.name}}: 
+            </p>
             <table class="table">
                 <thead>
                     <tr> 

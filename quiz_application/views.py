@@ -5,27 +5,25 @@ from flask_login import login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from quiz_application.auth import is_admin, is_manager, redirecting_users
 from . import db
-
 from quiz_application.models import Subject, User
 
 views = Blueprint('views', __name__)
 
-
-@views.route('/')
-#@login_required
+# homepage route for unauthenticated users
+@views.route('/') 
 def home():
-    if current_user:
-        return render_template("pages/home.html", user = current_user) 
-    return render_template("pages/home.html")
+    return render_template("pages/home.html", user=current_user)
 
+# students will be directed to this route
 @views.route('/student')
 @login_required
 def student():
-    subjects = current_user.subjects
+    student_subjects = current_user.subjects
     all_subjects = Subject.query.all() 
     marks = current_user.marks 
-    return render_template("pages/student/student.html", user=current_user, subjects=subjects, marks=marks, all_subjects=all_subjects)
-    
+    return render_template("pages/student/student.html", user=current_user, subjects=student_subjects, marks=marks, all_subjects=all_subjects)
+
+# admins will be directed to this route    
 @views.route('/admin')
 @login_required
 @is_admin
@@ -36,7 +34,7 @@ def admin():
 @views.route('/pending_user')
 @login_required
 def pending():
-    return render_template("pages/pendingUser.html", user = current_user)
+    return render_template("pages/pendingUser.html", user=current_user)
 
 @views.route('/edit_profile', methods=["GET", "POST"])
 @login_required
@@ -65,7 +63,6 @@ def update_profile():
                 return redirecting_users(update_self.role)
             except:
                 flash("Couldn't edit profile!", category="error")  
-       
     return render_template("/pages/edit_profile.html", user = current_user)
 
 @views.route('/manager')  

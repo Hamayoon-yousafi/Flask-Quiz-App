@@ -3,14 +3,15 @@
 
 {% block content %} 
 <main> 
-    <section class="section-padding">
-        <h3 class="display-4 mb-5">Welcome, {{ user.name }}</h3> 
-        
-        <div class="bt-5">
-            <a class="btn btn-success mb-3" href="/create-question">Create Question</a>
-            <p class="lead" style="font-weight: 500;">
-                List of all Subjects: 
-            </p>
+    <section class="section-padding"> 
+        <h3 class="display-4 mb-5">Manage Questions</h3> 
+        <div class="table-design bt-5">
+           <div class="table-design-header">
+               <p class="lead" style="font-weight: 500;">
+                List of all Questions: 
+                </p>
+                <a class="btn btn-success mb-3" href="/create-question">Create Question</a>
+           </div>
             <table class="table">
                 <thead>
                     <tr>

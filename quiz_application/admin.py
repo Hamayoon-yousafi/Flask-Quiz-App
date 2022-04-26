@@ -1,9 +1,7 @@
 from flask import Blueprint, flash, redirect, render_template, request
 from quiz_application.auth import is_admin
-
 from quiz_application.models import User
 from . import db
-
 
 admin = Blueprint('admin', __name__)
 
@@ -28,7 +26,7 @@ def update_user_view(id):
         user_to_update.name = request.form['name']
         user_to_update.email = request.form['email']
         if not request.form['role']:
-            user_to_update.role = "pending"    
+            user_to_update.role = "Pending"    
         user_to_update.role = request.form['role'] 
         try:
             db.session.commit()

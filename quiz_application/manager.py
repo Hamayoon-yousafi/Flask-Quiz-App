@@ -16,7 +16,7 @@ def create_subject():
     if request.method == 'POST':
         subject_name = request.form.get('name')
         about = request.form.get('about')
-        new_subject = Subject (name=subject_name, about=about, )
+        new_subject = Subject (name=subject_name, about=about)
         db.session.add(new_subject)
         db.session.commit()
         flash("Success!", category='success') 
@@ -27,8 +27,8 @@ def create_subject():
 @login_required
 @is_manager
 def update_subject(id): 
-    subject_to_update = Subject.query.get_or_404(id)
     if request.method == 'POST':
+        subject_to_update = Subject.query.get_or_404(id)
         subject_to_update.name = request.form.get('name')
         subject_to_update.about = request.form.get('about')
         try:
@@ -44,8 +44,8 @@ def update_subject(id):
 @login_required
 @is_manager
 def delete_subject(id): 
-    subject_to_delete = Subject.query.get_or_404(id)
     try:
+        subject_to_delete = Subject.query.get_or_404(id)
         db.session.delete(subject_to_delete)
         db.session.commit()
         flash("Successfully deleted!", category="success")
@@ -58,7 +58,7 @@ def delete_subject(id):
 @is_manager
 def manage_questions():
     questions = Question.query.all()
-    return render_template("/pages/manager/manage-questions.html", questions=questions,user = current_user)
+    return render_template("/pages/manager/manage-questions.html", questions=questions,user=current_user)
 
 @manager.route("/create-question", methods=['GET', 'POST'])
 @login_required
@@ -77,7 +77,6 @@ def create_question():
         db.session.commit()
         flash("Successfuly created the questoin!", category='success') 
         return redirect('/manage-questions')
-
     return render_template("pages/manager/create-question.html", subjects=subjects, user=current_user)
 
 @manager.route("/update-question/<int:id>", methods=['GET', 'POST'])
@@ -95,19 +94,18 @@ def update_question(id):
         question_to_update.answer = request.form['correct_answer']
         try: 
             db.session.commit()
-            flash("Successfully updated questoin!", category='success') 
+            flash("Successfully updated question!", category='success') 
             return redirect('/manage-questions')
         except:
             flash("something went wrong!", category="error")
-
     return render_template("pages/manager/update-question.html", question=question_to_update , subjects=subjects, user=current_user)
 
 @manager.route("/delete-question/<int:id>")
 @login_required
 @is_manager
 def delete_question(id):
-    question_to_delete = Question.query.get_or_404(id)
     try:
+        question_to_delete = Question.query.get_or_404(id)
         db.session.delete(question_to_delete)
         db.session.commit()
         flash("Successfully deleted!", category="success")
