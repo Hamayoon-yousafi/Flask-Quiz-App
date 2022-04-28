@@ -6,8 +6,8 @@ from flask_login import UserMixin
 from datetime import datetime, timedelta
 
 user_subject = db.Table('user_subject',
-    db.Column('user_id', db.Integer, db.ForeignKey('user.id'),),
-    db.Column('subject_id', db.Integer, db.ForeignKey('subject.id')),
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'),),
+    db.Column('subject_id', db.Integer, db.ForeignKey('subject.id', ondelete='CASCADE')),
     db.Column('date_enrolled', db.DateTime, default=datetime.now())
 )
 
@@ -17,15 +17,15 @@ class User(db.Model, UserMixin):
     name = db.Column(db.String(150))
     password = db.Column(db.String(150))
     role = db.Column(db.String(30), default="Pending") 
-    subjects = db.relationship("Subject", secondary=user_subject, cascade="all, delete", backref="subjects",) 
-    marks = db.relationship("Mark", cascade="all, delete-orphan", backref="marks", single_parent=True) 
+    subjects = db.relationship("Subject", secondary=user_subject, backref="subjects", passive_deletes=True) 
+    marks = db.relationship("Mark", backref="marks", single_parent=True) 
 
 
 class Subject(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(150), unique=True)
     about = db.Column(db.String(150))
-    users = db.relationship("User", secondary=user_subject, cascade="all, delete", backref="users")
+    users = db.relationship("User", secondary=user_subject, backref="users", passive_deletes=True)
     questions = db.relationship('Question', backref="subject") 
 
 class Question(db.Model):
