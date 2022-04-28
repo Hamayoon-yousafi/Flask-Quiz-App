@@ -27,8 +27,8 @@ def create_subject():
 @login_required
 @is_manager
 def update_subject(id): 
+    subject_to_update = Subject.query.get_or_404(id)
     if request.method == 'POST':
-        subject_to_update = Subject.query.get_or_404(id)
         subject_to_update.name = request.form.get('name')
         subject_to_update.about = request.form.get('about')
         try:
@@ -49,9 +49,10 @@ def delete_subject(id):
         db.session.delete(subject_to_delete)
         db.session.commit()
         flash("Successfully deleted!", category="success")
-        return redirect('/manager')
+        return redirect("/manager")
     except:
         flash("Something went wrong!", category="error")
+        return redirect("/manager")
 
 @manager.route('/manage-questions')
 @login_required

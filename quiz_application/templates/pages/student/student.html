@@ -14,14 +14,17 @@
                 <div>
                     <button type="button" class="btn btn-outline-success mt-3 mr-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                         Enroll 
-                    </button>
-                    {% if not subjects %} 
-                    <p>Please enroll in subjects to be able to take quiz.</p>
-                    {% else %}
+                    </button> 
                     <!-- Button trigger modal -->
+                    {% if subjects %}
                     <button type="button" class="btn btn-outline-primary mt-3" style="margin-left: 10px;" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Take Quiz
                     </button>
+                    {% else %}
+                    <button type="button" class="btn btn-outline-primary mt-3" style="margin-left: 10px;" data-bs-toggle="modal" data-bs-target="#exampleModal" disabled>
+                        Take Quiz
+                    </button>
+                    {% endif %}
                 </div>
             
             <!-- Modal -->
@@ -43,8 +46,7 @@
                     </div>
                 </div>
                 </div>
-            </div>
-            {% endif %}
+            </div> 
             </div>
             <!-- Modal -->
             <div class="modal modal-custom fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -89,6 +91,7 @@
                 </div>
                 </div>
             </div>
+            {% if subjects  %}
             <table class="table">
                 <thead>
                     <tr>
@@ -113,6 +116,9 @@
                     {% endfor %} 
                 </tbody>
             </table>
+            {% else %}
+            <h1 class="display-4 mt-3">You have not taken any subjects.</h1>
+            {% endif %}
         </div>
 
     </section> 

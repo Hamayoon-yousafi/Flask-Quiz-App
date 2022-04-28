@@ -8,9 +8,8 @@ admin = Blueprint('admin', __name__)
 @admin.route('/delete_user/<int:id>')
 @is_admin
 def delete(id):
-    user_to_delete = User.query.get_or_404(id)
     try:
-        db.session.delete(user_to_delete)
+        db.session.delete(User.query.get_or_404(id))
         db.session.commit()
         flash("Successfully deleted!", category="success")
         return redirect('/admin')

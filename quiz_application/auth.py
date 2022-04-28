@@ -91,3 +91,13 @@ def is_manager(f):
             flash("Unauthorized", category="error")
             return redirect("/") 
     return wrap
+
+def is_student(f):
+    @wraps(f)
+    def wrap(*args, **kwargs):
+        if current_user.role == "Student":
+            return f(*args, **kwargs)
+        else:
+            flash("Unauthorized", category="error")
+            return redirect("/") 
+    return wrap

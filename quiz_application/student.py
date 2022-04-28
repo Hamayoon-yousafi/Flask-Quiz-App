@@ -1,6 +1,7 @@
 import json
 import random
 from flask import Blueprint, flash, redirect, render_template, request
+from quiz_application.auth import is_student
 from quiz_application.models import Mark, Question, Subject, User
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
@@ -9,13 +10,13 @@ from flask_login import login_user, login_required, logout_user, current_user
 student = Blueprint('student', __name__)
 
 @student.route("/enrol")
+@is_student
 @login_required
-def show_courses():
-    subjects = Subject.query.all()
-    return render_template("/pages/student/courses-enrol.html", user=current_user, subjects=subjects)
-
+def show_courses(): 
+    return render_template("/pages/student/courses-enrol.html", user=current_user, subjects=Subject.query.all())
 
 @student.route("/enrol/<int:course_id>/<int:student_id>", methods=["GET","POST"])
+@is_student
 @login_required
 def enroll_in_course(course_id, student_id):
     subjects = Subject.query.all() 
@@ -31,6 +32,7 @@ def enroll_in_course(course_id, student_id):
     return render_template("/pages/student/courses-enrol.html", user=current_user, subjects=subjects)
    
 @student.route("/drop-course/<int:course_id>/<int:student_id>")
+@is_student
 @login_required
 def drop_course(course_id, student_id):
     user = User.query.get_or_404(student_id)
@@ -44,6 +46,7 @@ def drop_course(course_id, student_id):
         flash("Couldn't update subject", category="error")  
 
 @student.route("/quiz", methods=["GET", "POST"])
+@is_student
 @login_required
 def quiz():
     subjects = current_user.subjects
@@ -61,18 +64,18 @@ def quiz():
             questions.append(question_structure) 
 
     if request.method == "POST": 
-        data = dict(request.form) 
+        data = request.form 
         attempts = []
-        for k,v in data.items():
+        for question,attempt_answer in data.items():
             attempt_structure = {
-                "question": k,
-                "attempt": v.split(",")[0],
-                "correct": v.split(",")[1]
+                "question": question,
+                "attempt": attempt_answer.split(",")[0],
+                "correct": attempt_answer.split(",")[1]
             }
-            attempts.append(attempt_structure)
+            attempts.append(attempt_structure) 
 
-        for attempt in attempts:
-            if attempt["attempt"] == attempt["correct"]:
+        for each_question in attempts:
+            if each_question["attempt"] == each_question["correct"]:
                 total_answers.append(5)
             else:
                 total_answers.append(0) 
@@ -92,6 +95,7 @@ def quiz():
     return render_template("/pages/student/quiz.html", user=current_user, subjects=subjects, questions=questions)
 
 @student.route("/results", methods=["GET", "POST"])
+@is_student
 @login_required
 def results():
     marks = current_user.marks  

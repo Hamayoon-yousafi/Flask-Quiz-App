@@ -43,6 +43,7 @@ def update_profile():
     if request.method == "POST":
         update_self.name = request.form['name']
         update_self.email = request.form['email']  
+        
         if request.form['password']: 
             if request.form['password'] != request.form['confirm_password']:
                 flash("Password did not match the confirm the password!", category='error')
