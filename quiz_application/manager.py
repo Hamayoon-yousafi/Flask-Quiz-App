@@ -1,4 +1,3 @@
-import re
 from flask import Blueprint, flash, redirect, render_template, request
 from flask_login import current_user, login_required
 from quiz_application.auth import is_manager
@@ -21,7 +20,7 @@ def create_subject():
         db.session.commit()
         flash("Success!", category='success') 
         return redirect('/manager')
-    return render_template('/pages/manager/create-subject.html', user=current_user)
+    return render_template('/manager/create-subject.html', user=current_user)
 
 @manager.route('/update-subject/<int:id>', methods=['GET', 'POST'])
 @login_required
@@ -38,7 +37,7 @@ def update_subject(id):
         except:
             flash("Couldn't update subject", category="error") 
         return redirect('/manager')
-    return render_template('/pages/manager/update-subject.html', user=current_user, subject=subject_to_update)
+    return render_template('/manager/update-subject.html', user=current_user, subject=subject_to_update)
      
 @manager.route('/delete-subject/<int:id>')
 @login_required
@@ -59,7 +58,7 @@ def delete_subject(id):
 @is_manager
 def manage_questions():
     questions = Question.query.all()
-    return render_template("/pages/manager/manage-questions.html", questions=questions,user=current_user)
+    return render_template("/manager/manage-questions.html", questions=questions,user=current_user)
 
 @manager.route("/create-question", methods=['GET', 'POST'])
 @login_required
@@ -78,7 +77,7 @@ def create_question():
         db.session.commit()
         flash("Successfuly created the questoin!", category='success') 
         return redirect('/manage-questions')
-    return render_template("pages/manager/create-question.html", subjects=subjects, user=current_user)
+    return render_template("manager/create-question.html", subjects=subjects, user=current_user)
 
 @manager.route("/update-question/<int:id>", methods=['GET', 'POST'])
 @login_required
@@ -99,7 +98,7 @@ def update_question(id):
             return redirect('/manage-questions')
         except:
             flash("something went wrong!", category="error")
-    return render_template("pages/manager/update-question.html", question=question_to_update , subjects=subjects, user=current_user)
+    return render_template("manager/update-question.html", question=question_to_update , subjects=subjects, user=current_user)
 
 @manager.route("/delete-question/<int:id>")
 @login_required
@@ -119,7 +118,7 @@ def delete_question(id):
 @is_manager
 def see_students():
     students = User.query.filter_by(role="Student").all()
-    return render_template("/pages/manager/students-list.html", user=current_user, students=students)
+    return render_template("manager/students-list.html", user=current_user, students=students)
 
 @manager.route("/students-list/results/<int:id>")
 @login_required
@@ -127,5 +126,5 @@ def see_students():
 def see_students_marks(id):
     student = User.query.get_or_404(id)
     marks = student.marks
-    return render_template("pages/manager/students-results.html", user=current_user, student=student, marks=marks)
+    return render_template("manager/students-results.html", user=current_user, student=student, marks=marks)
     

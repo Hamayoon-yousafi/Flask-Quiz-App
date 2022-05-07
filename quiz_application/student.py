@@ -1,49 +1,37 @@
-import json
 import random
 from flask import Blueprint, flash, redirect, render_template, request
 from quiz_application.auth import is_student
-from quiz_application.models import Mark, Question, Subject, User
-from werkzeug.security import generate_password_hash, check_password_hash
+from quiz_application.models import Mark, Subject, User 
 from . import db
-from flask_login import login_user, login_required, logout_user, current_user 
+from flask_login import login_required, current_user 
 
 student = Blueprint('student', __name__)
-
-@student.route("/enrol")
+ 
+@student.route("/enrol/<int:course_id>/", methods=["GET","POST"])
 @is_student
 @login_required
-def show_courses(): 
-    return render_template("/pages/student/courses-enrol.html", user=current_user, subjects=Subject.query.all())
-
-@student.route("/enrol/<int:course_id>/<int:student_id>", methods=["GET","POST"])
-@is_student
-@login_required
-def enroll_in_course(course_id, student_id):
-    subjects = Subject.query.all() 
-    user = User.query.get_or_404(student_id)
+def enroll_in_course(course_id): 
     subject = Subject.query.get_or_404(course_id)
     try:
-        user.subjects.append(subject)
+        current_user.subjects.append(subject)
         db.session.commit()
         flash("Selected course successfully!", category='success')
         return redirect('/student')
     except:
-        flash("Couldn't update subject", category="error")  
-    return render_template("/pages/student/courses-enrol.html", user=current_user, subjects=subjects)
+        flash("Couldn't update subject", category="error")   
    
-@student.route("/drop-course/<int:course_id>/<int:student_id>")
+@student.route("/drop-course/<int:course_id>/")
 @is_student
 @login_required
-def drop_course(course_id, student_id):
-    user = User.query.get_or_404(student_id)
+def drop_course(course_id): 
     subject = Subject.query.get_or_404(course_id)
     try:
-        user.subjects.remove(subject)
+        current_user.subjects.remove(subject)
         db.session.commit()
         flash("Dropped subject successfully!", category='success')
         return redirect('/student')
     except:
-        flash("Couldn't update subject", category="error")  
+        flash("Couldn't drop subject", category="error")  
 
 @student.route("/quiz", methods=["GET", "POST"])
 @is_student
@@ -92,11 +80,11 @@ def quiz():
             db.session.rollback()
             return redirect("/student")      
         
-    return render_template("/pages/student/quiz.html", user=current_user, subjects=subjects, questions=questions)
+    return render_template("/student/quiz.html", user=current_user, subjects=subjects, questions=questions)
 
 @student.route("/results", methods=["GET", "POST"])
 @is_student
 @login_required
 def results():
     marks = current_user.marks  
-    return render_template("/pages/student/result.html", user=current_user, marks=marks)
+    return render_template("/student/result.html", user=current_user, marks=marks)

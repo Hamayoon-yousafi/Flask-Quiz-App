@@ -19,7 +19,7 @@ def delete(id):
 
 @admin.route('/update_user/<int:id>', methods=['GET', 'POST']) 
 @is_admin
-def update_user_view(id):
+def update_user(id):
     user_to_update = User.query.get_or_404(id) 
     if request.method == "POST":
         user_to_update.name = request.form['name']
@@ -33,4 +33,4 @@ def update_user_view(id):
             return redirect('/admin')
         except:
             flash("Couldn't update user", category="error")
-    return render_template("/pages/admin/update_user.html", user = user_to_update)
+    return render_template("/admin/update_user.html", user = user_to_update)

@@ -1,8 +1,6 @@
-from re import sub
-from unicodedata import category
-from flask import Blueprint, flash, redirect, render_template, request
+from flask import Blueprint, flash, render_template, request
 from flask_login import login_required, current_user
-from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.security import generate_password_hash
 from quiz_application.auth import is_admin, is_manager, redirecting_users
 from . import db
 from quiz_application.models import Subject, User
@@ -12,7 +10,7 @@ views = Blueprint('views', __name__)
 # homepage route for unauthenticated users
 @views.route('/') 
 def home():
-    return render_template("pages/home.html", user=current_user)
+    return render_template("/sharedviews/home.html", user=current_user)
 
 # students will be directed to this route
 @views.route('/student')
@@ -21,7 +19,7 @@ def student():
     student_subjects = current_user.subjects
     all_subjects = Subject.query.all() 
     marks = current_user.marks 
-    return render_template("pages/student/student.html", user=current_user, subjects=student_subjects, marks=marks, all_subjects=all_subjects)
+    return render_template("/student/student.html", user=current_user, subjects=student_subjects, marks=marks, all_subjects=all_subjects)
 
 # admins will be directed to this route    
 @views.route('/admin')
@@ -29,12 +27,12 @@ def student():
 @is_admin
 def admin():
     users = User.query.all()
-    return render_template("pages/admin/admin.html", user = current_user, users = users)
+    return render_template("/admin/admin.html", user = current_user, users = users)
     
 @views.route('/pending_user')
 @login_required
 def pending():
-    return render_template("pages/pendingUser.html", user=current_user)
+    return render_template("sharedviews/pendingUser.html", user=current_user)
 
 @views.route('/edit_profile', methods=["GET", "POST"])
 @login_required
@@ -64,12 +62,12 @@ def update_profile():
                 return redirecting_users(update_self.role)
             except:
                 flash("Couldn't edit profile!", category="error")  
-    return render_template("/pages/edit_profile.html", user = current_user)
+    return render_template("sharedviews/edit_profile.html", user = current_user)
 
 @views.route('/manager')  
 @is_manager  
 @login_required
 def manager():
     subjects = Subject.query.all()
-    return render_template("pages/manager/manager.html", user = current_user, subjects = subjects)
+    return render_template("/manager/manager.html", user = current_user, subjects = subjects)
 
