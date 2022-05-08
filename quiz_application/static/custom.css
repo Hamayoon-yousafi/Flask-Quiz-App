@@ -147,9 +147,11 @@ body {
 }
 
 .table-design{
-    border: solid 0.5px #cfcfcf6e;
-    padding: 40px;
-    border-radius: 13px;
+  border: solid 0.5px #cfcfcf6e;
+  padding: 40px;
+  border-radius: 13px;
+  background: white;
+  box-shadow: rgb(17 17 26 / 5%) 0px 1px 0px, rgb(17 17 26 / 10%) 0px 0px 8px;
 }
 
 .table-design-header{
@@ -164,4 +166,48 @@ body {
     width: 50px;
     font-size: 21px;
     padding: 0px;
+}
+
+
+.portal-controls-area { 
+  height: auto;
+  padding: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.portal-control {
+  display: inline-block;
+  overflow-y: auto;
+  flex: 0 0 auto;
+  margin: 8px;
+  height: 320px;
+  box-shadow: rgb(0 0 0 / 13%) 0px 5.6px 9.6px 0px, rgb(0 0 0 / 11%) 0px 0.3px 0.9px 0px;
+  padding-top: 32px;
+  padding-bottom: 32px;
+  padding-left: 16px;
+  padding-right: 16px;
+  border-radius: 0;
+  text-align: center;
+  width: 23%;
+  transition: all 0.1s;
+  overflow: hidden;
+}
+
+.portal-control:hover{
+  transform: scale(1.03);
+}
+
+.control-hint{
+  color: black;
+  font-size: 15px;
+}
+
+.control-link, .control-link:hover {
+  color: #0078d4;
+}
+
+.control-link:hover{
+    text-decoration: underline;
 }

@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %} Create Question {% endblock %}
+{% block title %} Update Question {% endblock %}
 
 {% block content %} 
 
@@ -11,7 +11,7 @@
 
                 <div class="col-lg-8 mx-auto col-12">
 
-                    <h1 class="hero-title text-center mb-5">Create Question</h1>  
+                    <h1 class="hero-title text-center mb-5">Update Question</h1>  
 
                     <div class="row">
                         <div class="col-lg-8 col-11 mx-auto">
@@ -48,7 +48,7 @@
                                 <button type="submit" class="btn custom-btn form-control mt-4 mb-3">
                                     Update
                                 </button>
-                                <a class="btn btn-outline-danger custom-btn form-control user_delete_btn" href="/delete-question/{{question.id}}">Delete</a>   
+                                <a class="btn btn-outline-danger custom-btn form-control user_delete_btn" href="/manager/delete-question/{{question.id}}">Delete</a>   
                             </form>
                         </div>
                     </div>

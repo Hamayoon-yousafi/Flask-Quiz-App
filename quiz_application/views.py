@@ -16,18 +16,15 @@ def home():
 @views.route('/student')
 @login_required
 def student():
-    student_subjects = current_user.subjects
-    all_subjects = Subject.query.all() 
-    marks = current_user.marks 
-    return render_template("/student/student.html", user=current_user, subjects=student_subjects, marks=marks, all_subjects=all_subjects)
+    student_subjects = current_user.subjects 
+    return render_template("/student/portal.html", user=current_user, subjects=student_subjects)
 
 # admins will be directed to this route    
 @views.route('/admin')
 @login_required
 @is_admin
 def admin():
-    users = User.query.all()
-    return render_template("/admin/admin.html", user = current_user, users = users)
+    return render_template("/admin/portal.html", user = current_user)
     
 @views.route('/pending_user')
 @login_required
@@ -67,7 +64,6 @@ def update_profile():
 @views.route('/manager')  
 @is_manager  
 @login_required
-def manager():
-    subjects = Subject.query.all()
-    return render_template("/manager/manager.html", user = current_user, subjects = subjects)
+def manager(): 
+    return render_template("/manager/portal.html", user = current_user)
 

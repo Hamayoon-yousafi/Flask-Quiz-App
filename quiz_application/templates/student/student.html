@@ -15,38 +15,7 @@
                     <button type="button" class="btn btn-outline-success mt-3 mr-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                         Enroll 
                     </button> 
-                    <!-- Button trigger modal -->
-                    {% if subjects %}
-                    <button type="button" class="btn btn-outline-primary mt-3" style="margin-left: 10px;" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        Take Quiz
-                    </button>
-                    {% else %}
-                    <button type="button" class="btn btn-outline-primary mt-3" style="margin-left: 10px;" data-bs-toggle="modal" data-bs-target="#exampleModal" disabled>
-                        Take Quiz
-                    </button>
-                    {% endif %}
                 </div>
-            
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Start Quiz?</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">  
-                        <p>
-                            The number of questions may vary. Each question has 5 marks. Make sure you are ready to start quiz.
-                        </p>
-                    </div>
-                    <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <a href="/quiz" type="button" class="btn btn-primary">Continue</a>
-                    </div>
-                </div>
-                </div>
-            </div> 
             </div>
             <!-- Modal -->
             <div class="modal modal-custom fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -109,7 +78,7 @@
                         <td>{{subject.about}}</td>   
                         <td>
                             <div class="actions">  
-                                <a class="btn icon-buttons btn-outline-danger" href="/drop-course/{{subject.id}}/"><i class="fa fa-times" aria-hidden="true"></i></a> 
+                                <a class="btn icon-buttons btn-outline-danger" href="/student/drop-course/{{subject.id}}/"><i class="fa fa-times" aria-hidden="true"></i></a> 
                             </div>
                         </td>
                     </tr>

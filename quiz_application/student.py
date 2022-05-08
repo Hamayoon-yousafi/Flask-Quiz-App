@@ -6,8 +6,18 @@ from . import db
 from flask_login import login_required, current_user 
 
 student = Blueprint('student', __name__)
- 
-@student.route("/enrol/<int:course_id>/", methods=["GET","POST"])
+
+@student.route("manage-courses")
+@is_student
+@login_required
+def manage_subjects():
+    student_subjects = current_user.subjects
+    all_subjects = Subject.query.all() 
+    marks = current_user.marks 
+    return render_template("student/student.html", user=current_user, subjects=student_subjects, marks=marks, all_subjects=all_subjects)
+
+
+@student.route("enrol/<int:course_id>/", methods=["GET","POST"])
 @is_student
 @login_required
 def enroll_in_course(course_id): 
@@ -16,7 +26,7 @@ def enroll_in_course(course_id):
         current_user.subjects.append(subject)
         db.session.commit()
         flash("Selected course successfully!", category='success')
-        return redirect('/student')
+        return redirect('/student/manage-courses')
     except:
         flash("Couldn't update subject", category="error")   
    
@@ -29,11 +39,11 @@ def drop_course(course_id):
         current_user.subjects.remove(subject)
         db.session.commit()
         flash("Dropped subject successfully!", category='success')
-        return redirect('/student')
+        return redirect('/student/manage-courses')
     except:
         flash("Couldn't drop subject", category="error")  
 
-@student.route("/quiz", methods=["GET", "POST"])
+@student.route("quiz", methods=["GET", "POST"])
 @is_student
 @login_required
 def quiz():
@@ -82,7 +92,7 @@ def quiz():
         
     return render_template("/student/quiz.html", user=current_user, subjects=subjects, questions=questions)
 
-@student.route("/results", methods=["GET", "POST"])
+@student.route("results", methods=["GET", "POST"])
 @is_student
 @login_required
 def results():

@@ -8,7 +8,14 @@ from . import db
 
 manager = Blueprint('manager', __name__)
 
-@manager.route('/create-subject', methods=['GET', 'POST'])
+@manager.route("manage-subjects")
+@login_required
+@is_manager
+def manage_subjects():
+    subjects = Subject.query.all()
+    return render_template("manager/manager.html", user=current_user, subjects=subjects)
+
+@manager.route('create-subject', methods=['GET', 'POST'])
 @login_required
 @is_manager
 def create_subject(): 
@@ -19,10 +26,10 @@ def create_subject():
         db.session.add(new_subject)
         db.session.commit()
         flash("Success!", category='success') 
-        return redirect('/manager')
+        return redirect('/manager/manage-subjects')
     return render_template('/manager/create-subject.html', user=current_user)
 
-@manager.route('/update-subject/<int:id>', methods=['GET', 'POST'])
+@manager.route('update-subject/<int:id>', methods=['GET', 'POST'])
 @login_required
 @is_manager
 def update_subject(id): 
@@ -33,13 +40,13 @@ def update_subject(id):
         try:
             db.session.commit()
             flash("Subject updated successfully!", category='success')
-            return redirect('/manager')
+            return redirect('/manager/manage-subjects')
         except:
             flash("Couldn't update subject", category="error") 
-        return redirect('/manager')
+        return redirect('/manager/manage-subjects')
     return render_template('/manager/update-subject.html', user=current_user, subject=subject_to_update)
      
-@manager.route('/delete-subject/<int:id>')
+@manager.route('delete-subject/<int:id>')
 @login_required
 @is_manager
 def delete_subject(id): 
@@ -48,10 +55,10 @@ def delete_subject(id):
         db.session.delete(subject_to_delete)
         db.session.commit()
         flash("Successfully deleted!", category="success")
-        return redirect("/manager")
+        return redirect("/manager/manage-subjects")
     except:
         flash("Something went wrong!", category="error")
-        return redirect("/manager")
+        return redirect("manager/manage-subjects")
 
 @manager.route('/manage-questions')
 @login_required
@@ -60,7 +67,7 @@ def manage_questions():
     questions = Question.query.all()
     return render_template("/manager/manage-questions.html", questions=questions,user=current_user)
 
-@manager.route("/create-question", methods=['GET', 'POST'])
+@manager.route("create-question", methods=['GET', 'POST'])
 @login_required
 @is_manager
 def create_question():
@@ -76,10 +83,10 @@ def create_question():
         db.session.add(new_question)
         db.session.commit()
         flash("Successfuly created the questoin!", category='success') 
-        return redirect('/manage-questions')
+        return redirect('/manager/manage-questions')
     return render_template("manager/create-question.html", subjects=subjects, user=current_user)
 
-@manager.route("/update-question/<int:id>", methods=['GET', 'POST'])
+@manager.route("update-question/<int:id>", methods=['GET', 'POST'])
 @login_required
 @is_manager
 def update_question(id):
@@ -95,12 +102,12 @@ def update_question(id):
         try: 
             db.session.commit()
             flash("Successfully updated question!", category='success') 
-            return redirect('/manage-questions')
+            return redirect('/manager/manage-questions')
         except:
             flash("something went wrong!", category="error")
     return render_template("manager/update-question.html", question=question_to_update , subjects=subjects, user=current_user)
 
-@manager.route("/delete-question/<int:id>")
+@manager.route("delete-question/<int:id>")
 @login_required
 @is_manager
 def delete_question(id):
@@ -109,7 +116,7 @@ def delete_question(id):
         db.session.delete(question_to_delete)
         db.session.commit()
         flash("Successfully deleted!", category="success")
-        return redirect('/manage-questions')
+        return redirect('/manager/manage-questions')
     except:
         flash("Something went wrong!", category="error")
 

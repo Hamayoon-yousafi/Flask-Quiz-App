@@ -6,9 +6,61 @@
     <section class="section-padding">
         <h3 class="display-4 mb-5">Welcome, {{ user.name }}</h3> 
         <div class="table-design bt-5">
-            <p class="lead" style="font-weight: 500;">
-                List of all users:
-            </p>
+            
+            <div class="table-design-header">
+                <p class="lead" style="font-weight: 500;">
+                    List of all users:
+                </p>
+                <button type="button" class="btn btn-outline-success" style="height: 38px;" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    Pending Users 
+                </button> 
+            </div>
+            <!-- Modal -->
+            <div class="modal modal-custom fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content modal-content-custom ">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">All Pending Users:</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body modal-body-custom">
+                            <div class="bt-5">  
+                                    {% if not pending_users %}
+                                    <h4>No Pending users!</h4>
+                                    {% else %}
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">ID</th>
+                                                <th scope="col">Username</th>
+                                                <th scope="col">Email</th>
+                                                <th scope="col">Role</th>
+                                                <th scope="col">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                {% for pending_user in pending_users %}
+                                                <td>{{pending_user.id}}</td>
+                                                <td>{{pending_user.name}}</td>
+                                                <td>{{pending_user.email}}</td>
+                                                <td>{{pending_user.role}}</td>
+                                                <td>
+                                                    <div class="actions">  
+                                                        <a class="icon-buttons btn btn-outline-success" href="/admin/update_user/{{user.id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                                    </div>
+                                                </td>
+                                                {% endfor %}
+                                            </tr>
+                                        </tbody>
+                                    </table> 
+                                {% endif %}
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+            <!-- END Modal -->
             <table class="table">
                 <thead>
                     <tr>
@@ -28,7 +80,7 @@
                         <td>{{user.role}}</td>
                         <td>
                             <div class="actions">  
-                                <a class="icon-buttons btn btn-outline-success" href="/update_user/{{user.id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                <a class="icon-buttons btn btn-outline-success" href="/admin/update_user/{{user.id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                             </div>
                         </td>
                     </tr>

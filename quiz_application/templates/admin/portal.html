@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %} Admin Portal {% endblock %}
+
+{% block content %} 
+<main> 
+    <section class="section-padding">  
+        <h1 class="display-4 mb-5">Welcome, {{ user.name }}!</h1>  
+        <div class="portal-controls-area">
+            <div class="portal-control">
+                <h5 class="display-6">Users List</h5>
+                <h1 style="margin: 23px;"><i class="fa fa-list-alt" aria-hidden="true"></i></h1>
+                <p class="control-hint">Manage users. Approve users by assigning roles or delete users.</p>
+                <a class="control-link" href="/admin/users-list">Manage Users  <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+            </div> 
+            <div class="portal-control">
+                <h5 class="display-6">Profile</h5>
+                <h1 style="margin: 23px;"><i class="fa fa-user-o" aria-hidden="true"></i></h1>
+                <p class="control-hint">Update your profile information or change password.</p>
+                <a class="control-link" href="/edit_profile">Edit Your Profile  <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+            </div>
+        </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Start Quiz?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">  
+                    <p>
+                        The number of questions may vary. Each question has 5 marks. Make sure you are ready to start quiz.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <a href="/student/quiz" type="button" class="btn btn-primary">Continue</a>
+                </div>
+            </div>
+            </div>
+        </div> 
+
+    </section> 
+</main>
+{% endblock %}
