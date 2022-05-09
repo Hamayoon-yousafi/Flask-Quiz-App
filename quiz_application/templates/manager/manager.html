@@ -12,34 +12,38 @@
                 </p>
                 <a class="btn btn-outline-success mb-3" href="/manager/create-subject">Create Subject</a>
             </div>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Subject</th> 
-                        <th scope="col">About this Subject</th> 
-                        <th scope="col">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for subject in subjects %}
-                    <tr>
-                        <th scope="row">{{subject.id}}</th>
-                        <td>{{subject.name}}</td> 
-                        <td>{{subject.about}}</td>  
-                        <td>
-                            <div class="actions"> 
-                                {% if subject.manager_id == user.id %} 
-                                <a class="btn icon-buttons btn-outline-success" href="/manager/update-subject/{{subject.id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> 
-                                {% else %}
-                                <button class="btn icon-buttons btn-outline-success" disabled><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                                {% endif %}
-                            </div>
-                        </td>
-                    </tr>
-                    {% endfor %} 
-                </tbody>
-            </table>
+            {% if subjects %}
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Subject</th> 
+                            <th scope="col">About this Subject</th> 
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for subject in subjects %}
+                        <tr>
+                            <th scope="row">{{subject.id}}</th>
+                            <td>{{subject.name}}</td> 
+                            <td>{{subject.about}}</td>  
+                            <td>
+                                <div class="actions"> 
+                                    {% if subject.manager_id == user.id %} 
+                                    <a class="btn icon-buttons btn-outline-success" href="/manager/update-subject/{{subject.id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> 
+                                    {% else %}
+                                    <button class="btn icon-buttons btn-outline-success" disabled><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                                    {% endif %}
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %} 
+                    </tbody>
+                </table>
+            {% else %}
+                <h1 class="display-6">No Subjects Created Yet!</h1>
+            {% endif %}
         </div>
 
     </section> 

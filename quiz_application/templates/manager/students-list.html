@@ -8,7 +8,8 @@
         <div class="table-design bt-5">
             <p class="lead" style="font-weight: 500;">
                 Below is full list of students. click view to see quiz results:
-            </p>  
+            </p>
+            {% if students %}
                 <table class="table">
                     <thead>
                         <tr> 
@@ -28,7 +29,11 @@
                         </tr> 
                         {% endfor %}
                     </tbody>
-                </table>   
+                </table> 
+            {% else %}
+                <h1 class="display-6">No students!</h1>
+            {% endif %}  
+            
              
             </div>
     </section> 

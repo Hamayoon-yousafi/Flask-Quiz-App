@@ -12,7 +12,8 @@
                 </p>
                 <a class="btn btn-outline-success mb-3" href="/manager/create-question">Create Question</a>
            </div>
-            <table class="table">
+           {% if questions %}
+                <table class="table">
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
@@ -43,7 +44,11 @@
                     </tr>
                     {% endfor %} 
                 </tbody>
-            </table>
+                </table>
+            {% else %}
+                <h1 class="display-6">No Questions Created yet!</h1>
+            {% endif %}
+
         </div>
 
     </section> 
