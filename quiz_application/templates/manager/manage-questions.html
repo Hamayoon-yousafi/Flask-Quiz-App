@@ -33,7 +33,11 @@
                         <td>{{question.answer}}</td> 
                         <td>
                             <div class="actions">  
-                                <a class="btn icon-buttons btn-outline-success" href="/manager/update-question/{{question.id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> 
+                                {% if question.manager_id  == current_user.id %}
+                                    <a class="btn icon-buttons btn-outline-success" href="/manager/update-question/{{question.id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> 
+                                {% else %}
+                                    <button class="btn icon-buttons btn-outline-success" disabled><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                                {% endif %}
                             </div>
                         </td>
                     </tr>

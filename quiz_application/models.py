@@ -27,6 +27,7 @@ class Subject(db.Model):
     about = db.Column(db.String(150))
     users = db.relationship("User", secondary=user_subject, backref="users", passive_deletes=True)
     questions = db.relationship('Question', backref="subject") 
+    manager_id = db.Column(db.Integer, db.ForeignKey("user.id"))
 
 class Question(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -36,6 +37,7 @@ class Question(db.Model):
     choice_two = db.Column(db.String(150))
     choice_three = db.Column(db.String(150))
     answer = db.Column(db.String(150))
+    manager_id = db.Column(db.Integer, db.ForeignKey("user.id"))
 
 class Mark(db.Model):
     id = db.Column(db.Integer, primary_key=True)
