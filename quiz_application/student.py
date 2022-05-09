@@ -78,7 +78,7 @@ def quiz():
             else:
                 total_answers.append(0) 
                 
-        total_marks = f"{sum(total_answers)} out of {len(questions) * 1}"  
+        total_marks = f"{sum(total_answers)} out of {len(questions)}"  
         marks = Mark(total_marks=total_marks, user_id=current_user.id)
         try: 
             db.session.add(marks)
