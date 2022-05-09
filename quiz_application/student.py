@@ -74,11 +74,11 @@ def quiz():
 
         for each_question in attempts:
             if each_question["attempt"] == each_question["correct"]:
-                total_answers.append(5)
+                total_answers.append(1)
             else:
                 total_answers.append(0) 
                 
-        total_marks = f"{sum(total_answers)} out of {len(questions) * 5}"  
+        total_marks = f"{sum(total_answers)} out of {len(questions) * 1}"  
         marks = Mark(total_marks=total_marks, user_id=current_user.id)
         try: 
             db.session.add(marks)

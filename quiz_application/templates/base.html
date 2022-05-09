@@ -32,39 +32,34 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 {% if user.is_authenticated  %}
-                {% if user.role == "Admin" %}
-                <li class="nav-item">
-                  <a class="nav-link" href="/admin">Portal</a>
-                </li>
-                {% endif %}  
-                {% if user.role == "Manager" %}
-                <li class="nav-item">
-                  <a class="nav-link" href="/manager">Portal</a>
-                </li> 
-                {% endif %} 
-                {% if user.role == "Student" %}
-                <li class="nav-item">
-                  <a class="nav-link" href="/student">Portal</a>
-                </li>  
-                {% endif %} 
-                <li class="nav-item">
-                  <a class="nav-link" id="login" href="/logout">Logout</a>
-                </li>
-                
+                  <li class="nav-item">
+                    {% if user.role == "Admin" %}
+                      <a class="nav-link" href="/admin">Portal</a>
+                    {% elif user.role == "Manager" %} 
+                      <a class="nav-link" href="/manager">Portal</a>
+                    {% elif user.role == "Student" %} 
+                      <a class="nav-link" href="/student">Portal</a> 
+                    {% endif %} 
+                  </li> 
+                  <li class="nav-item">
+                    <a class="nav-link" id="login" href="/logout">Logout</a>
+                  </li>
                 {% else %}
-                <li class="nav-item">
-                  <a class="nav-link" id="login" href="/login">Login</a>
-                </li>
-                <li class="nav-item">
-                  <a class="" id="login" href="/sign-up">Signup</a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="login" href="/login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" id="login" href="/sign-up">Signup</a>
+                    </li>
                 {% endif %}
-              </ul>
-              <ul class="navbar-nav">
+            </ul>
+            <ul class="navbar-nav">
+              {% if user.is_authenticated %}
                 <li class="nav-item">
                   <a href="/edit_profile" class="nav-link">{{user.name}} <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> 
                 </li> 
-              </ul>
+              {% endif %}
+            </ul>
           </div>
         </div>
     </nav>
