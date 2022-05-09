@@ -1,7 +1,7 @@
 from flask import Blueprint, flash, redirect, render_template, request
 from flask_login import login_required, current_user
 from werkzeug.security import generate_password_hash
-from quiz_application.auth import is_admin, is_manager, redirecting_users
+from quiz_application.auth import is_admin, is_manager, is_student, redirecting_users
 from . import db
 from quiz_application.models import Subject, User
 
@@ -14,6 +14,7 @@ def home():
 
 # students will be directed to this route
 @views.route('/student')
+@is_student
 @login_required
 def student():
     student_subjects = current_user.subjects 
@@ -21,6 +22,7 @@ def student():
 
 # admins will be directed to this route    
 @views.route('/admin')
+@is_admin
 @login_required
 @is_admin
 def admin():

@@ -19,14 +19,19 @@ def users_list():
 @login_required
 @is_admin
 def delete(id):
-    try:
-        db.session.delete(User.query.get_or_404(id))
-        db.session.commit()
-        flash("Successfully deleted!", category="success")
-        return redirect('/admin/users-list')
-    except:
-        flash("Something went wrong!", category="error")
-        return redirect("/admin")
+    user_to_delete = User.query.get_or_404(id)
+    if not user_to_delete.role == "Admin":
+        try:
+            db.session.delete(user_to_delete)
+            db.session.commit()
+            flash("Successfully deleted!", category="success")
+            return redirect('/admin/users-list')
+        except:
+            flash("Something went wrong!", category="error")
+            return redirect("/admin")
+    else:
+        flash("You cannot delete admin", category="error")
+        return redirect("/admin/users-list")
 
 @admin.route('/update_user/<int:id>', methods=['GET', 'POST']) 
 @login_required
