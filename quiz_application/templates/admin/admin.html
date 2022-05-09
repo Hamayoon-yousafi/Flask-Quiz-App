@@ -26,7 +26,7 @@
                         <div class="modal-body modal-body-custom">
                             <div class="bt-5">  
                                     {% if not pending_users %}
-                                    <h4>No Pending users!</h4>
+                                    <h1 class="display-6">No Pending users!</h1>
                                     {% else %}
                                     <table class="table">
                                         <thead>
@@ -39,19 +39,19 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            {% for pending_user in pending_users %}
                                             <tr>
-                                                {% for pending_user in pending_users %}
                                                 <td>{{pending_user.id}}</td>
                                                 <td>{{pending_user.name}}</td>
                                                 <td>{{pending_user.email}}</td>
                                                 <td>{{pending_user.role}}</td>
                                                 <td>
                                                     <div class="actions">  
-                                                        <a class="icon-buttons btn btn-outline-success" href="/admin/update_user/{{user.id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                                        <a class="icon-buttons btn btn-outline-success" href="/admin/update_user/{{pending_user.id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                                     </div>
                                                 </td>
-                                                {% endfor %}
                                             </tr>
+                                            {% endfor %}
                                         </tbody>
                                     </table> 
                                 {% endif %}

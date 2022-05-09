@@ -120,12 +120,12 @@ body {
   }
 
   .modal-custom{
-      right: 255px !important;
-      left: -295px !important;
+    right: 255px !important;
+    left: -359px !important;
   }
 
   .modal-content-custom {
-    width: 74rem !important;
+    width: 59rem !important;
     padding: 0 40px;
   }
 
@@ -206,15 +206,19 @@ body {
   font-size: 15px;
 }
 
-.control-link, .control-link:hover {
+.control-link, .nav-edit-link, .control-link:hover {
   color: #0078d4;
 
 }
 
-.control-link:hover{
+.control-link:hover, .nav-edit-link:hover{
     text-decoration: underline;
 }
 
 .fa-arrow-right {
   margin-left: 5px;
+}
+
+.navbar {
+  padding: 25px !important;
 }

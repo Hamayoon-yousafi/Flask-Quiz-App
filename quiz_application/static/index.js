@@ -14,4 +14,11 @@ if (edit_profile_password.required) {
     edit_profile_confirm_password.required = false
 }
 
+function confirmation(event) {
+    userconfirmation = confirm("Are you sure?")
+    if (userconfirmation == false) {
+        event.preventDefault()
+    }
+}
+
 

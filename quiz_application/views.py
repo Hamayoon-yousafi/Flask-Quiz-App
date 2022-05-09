@@ -1,4 +1,4 @@
-from flask import Blueprint, flash, render_template, request
+from flask import Blueprint, flash, redirect, render_template, request
 from flask_login import login_required, current_user
 from werkzeug.security import generate_password_hash
 from quiz_application.auth import is_admin, is_manager, redirecting_users
@@ -60,6 +60,17 @@ def update_profile():
             except:
                 flash("Couldn't edit profile!", category="error")  
     return render_template("sharedviews/edit_profile.html", user = current_user)
+
+@views.route("/delete_self")
+@login_required
+def delete():
+    try:
+        db.session.delete(current_user)
+        db.session.commit()
+        flash("Successfully deleted!", category="success") 
+        return redirect("/")
+    except:
+        flash("Something went wrong!", category="error") 
 
 @views.route('/manager')  
 @is_manager  
