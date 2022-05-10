@@ -1,4 +1,3 @@
-from genericpath import exists
 from flask import Flask 
 from flask_sqlalchemy import SQLAlchemy 
 from os import path
@@ -43,4 +42,5 @@ def create_database(app):
     if not path.exists('quiz_aplication/' + DB_NAME):
         db.create_all(app=app)
         print('DB CREATED!')
+
  
