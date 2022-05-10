@@ -1,9 +1,6 @@
-from collections import UserList
-from enum import unique
-from sqlalchemy.sql import func
 from . import db 
 from flask_login import UserMixin  
-from datetime import datetime, timedelta
+from datetime import datetime
 
 user_subject = db.Table('user_subject',
     db.Column('user_id', db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'),),
@@ -17,16 +14,16 @@ class User(db.Model, UserMixin):
     name = db.Column(db.String(150))
     password = db.Column(db.String(150))
     role = db.Column(db.String(30), default="Pending") 
-    subjects = db.relationship("Subject", secondary=user_subject, backref="subjects", passive_deletes=True) 
-    marks = db.relationship("Mark", backref="marks", single_parent=True) 
+    subjects = db.relationship("Subject", secondary=user_subject, passive_deletes=True, cascade="all, delete") 
+    marks = db.relationship("Mark", backref="marks", single_parent=True, cascade="all, delete") 
 
 
-class Subject(db.Model):
+class Subject(db.Model): 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(150), unique=True)
     about = db.Column(db.String(150))
-    users = db.relationship("User", secondary=user_subject, backref="users", passive_deletes=True)
-    questions = db.relationship('Question', backref="subject") 
+    users = db.relationship("User", secondary=user_subject, passive_deletes=True, cascade="all, delete")
+    questions = db.relationship('Question', backref="subject", cascade="all, delete") 
     manager_id = db.Column(db.Integer, db.ForeignKey("user.id"))
 
 class Question(db.Model):

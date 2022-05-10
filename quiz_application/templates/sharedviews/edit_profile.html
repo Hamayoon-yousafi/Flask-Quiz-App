@@ -17,7 +17,7 @@
                         <div class="col-lg-8 col-11 mx-auto">
                             <form method="POST">
                                 <div class="form-floating">
-                                    <input type="email" name="email" id="email" pattern="[^ @]*@[^ @]*" class="form-control" placeholder="Email address" value="{{user.email}}" >
+                                    <input type="email" name="email" id="email" pattern="[^ @]*@[^ @]*" class="form-control" placeholder="Email address" value="{{user.email}}" required>
                                     <label for="email">Email</label>
                                 </div> 
 
@@ -33,13 +33,12 @@
 
                                 <div class="form-floating">  
                                     <input type="password" name="confirm_password" id="confirm_password" pattern="[0-9a-zA-Z]{4,10}" class="form-control edit-profile-confirm-password" placeholder="Password">
-                                    <label for="confirm_password">Password Confirmation</label>
+                                    <label for="confirm_password">Confirm Password</label>
                                 </div>
 
                                 <button type="submit" class="btn custom-btn form-control mt-4 mb-3">
                                     Update
-                                </button> 
-                                <a onclick="confirmation(event)" class="btn btn-danger custom-btn form-control user_delete_btn" href="/delete_self">Delete</a> 
+                                </button>  
                             </form>
                         </div>
                     </div>
