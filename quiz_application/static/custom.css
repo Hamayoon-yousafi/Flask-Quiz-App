@@ -4,6 +4,7 @@ body {
 
 .img-thumbnail{
     border: none !important;
+    background-color: #e5e5e500;
   }
   
   .p {
@@ -53,13 +54,7 @@ body {
   
   .signup {
     margin-right: 0 !important;
-  }
-  
-  .actions { 
-      display: flex;
-      justify-content: space-between;
-      width: 165px;
-  }
+  } 
   
   .user_delete_btn {
     background-color: red !important;
@@ -119,26 +114,6 @@ body {
       background-color: #555;
   }
 
-  .modal-custom{
-    right: 255px !important;
-    left: -359px !important;
-  }
-
-  .modal-content-custom {
-    width: 59rem !important;
-    padding: 0 40px;
-  }
-
-  .modal-body-custom {
-    position: relative;
-    flex: 1 1 auto;
-    padding: 1rem; 
-  }
-
-  .modal-footer-custom{
-      display: block !important;
-  }
-
   .navbar-expand-lg .navbar-nav .nav-link {
     display: inline-block !important;
     padding: 0;
@@ -154,8 +129,7 @@ body {
   box-shadow: rgb(17 17 26 / 5%) 0px 1px 0px, rgb(17 17 26 / 10%) 0px 0px 8px;
 }
 
-.table-design-header{
-  width: 90%;
+.table-design-header{ 
   display: flex;
   justify-content: space-between; 
   margin-bottom: 10px;
@@ -221,4 +195,8 @@ body {
 
 .navbar {
   padding: 25px !important;
+}
+
+.modal-dialog {
+  max-width: 800px;
 }

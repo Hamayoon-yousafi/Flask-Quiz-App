@@ -1,6 +1,7 @@
 from flask import Blueprint, flash, redirect, render_template, request
 from flask_login import current_user, login_required
 from quiz_application.auth import is_admin
+from quiz_application.forms import UpdateUserForm
 from quiz_application.models import User
 from . import db
 
@@ -38,16 +39,21 @@ def delete(id):
 @is_admin
 def update_user(id):
     user_to_update = User.query.get_or_404(id) 
-    if request.method == "POST":
-        user_to_update.name = request.form['name']
-        user_to_update.email = request.form['email']
-        if not request.form['role']:
-            user_to_update.role = "Pending"    
-        user_to_update.role = request.form['role'] 
+    form = UpdateUserForm(request.form)  
+    roles = ["Admin", "Student", "Manager", "Pending"]
+    form.role.choices.insert(0, user_to_update.role) 
+    for role in roles:
+        if user_to_update.role != role:
+            form.role.choices.append(role)
+
+    if request.method == "POST" and form.validate():
+        user_to_update.name = form.name.data
+        user_to_update.email = form.email.data    
+        user_to_update.role = form.role.data 
         try:
             db.session.commit()
             flash("User updated successfully!", category='success')
             return redirect('/admin/users-list')
         except:
             flash("Couldn't update user", category="error")
-    return render_template("/admin/update_user.html", user=user_to_update)
+    return render_template("/admin/update_user.html", user=user_to_update, form=form)

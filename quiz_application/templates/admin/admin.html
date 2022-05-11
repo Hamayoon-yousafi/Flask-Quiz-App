@@ -74,19 +74,18 @@
                 <tbody>
                     {% for user in users %}
                     <tr>
-                        <th scope="row">{{user.id}}</th>
+                        <td>{{user.id}}</td>
                         <td>{{user.name}}</td>
                         <td>{{user.email}}</td>
                         <td>{{user.role}}</td>
-                        <td>
-                            <div class="actions">  
-                                <a class="icon-buttons btn btn-outline-success" href="/admin/update_user/{{user.id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                            </div>
+                        <td> 
+                            <a class="icon-buttons btn btn-outline-success" href="/admin/update_user/{{user.id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> 
                         </td>
                     </tr>
                     {% endfor %} 
                 </tbody>
-            </table>
+            </table> 
+
         </div>
     </section> 
 </main>

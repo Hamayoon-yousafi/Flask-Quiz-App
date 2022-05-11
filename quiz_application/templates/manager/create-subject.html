@@ -16,19 +16,37 @@
                     <div class="row">
                         <div class="col-lg-8 col-11 mx-auto">
                             <form method="POST">
-                                <div class="form-floating">
-                                    <input type="text" name="name" id="name" class="form-control" placeholder="Enter Subject Name" value="" >
-                                    <label for="name">Subject Name</label>
+                                {{ form.csrf_token() }}
+                                <div class="form-floating"> 
+                                    <div class="form-floating"> 
+                                        {% if form.subject_name.errors %}
+                                        {{ form.subject_name(class="form-control form-control-lg is-invalid")}} 
+                                        <div class="invalid-feedback">
+                                            {% for error in form.subject_name.errors %}
+                                            <span>{{error}}</span>
+                                            {% endfor %}    
+                                        </div> 
+                                        {% else %}
+                                        {{ form.subject_name(class="form-control", placeholder="Subject Name") }} 
+                                        {% endif %}
+                                        {{ form.subject_name.label }}
+                                    </div> 
                                 </div> 
 
-                                <div class="form-floating my-4">
-                                    <input type="text" name="about" id="name" class="form-control" placeholder="Enter About" value="">
-                                    <label for="name">About Subject</label>
-                                </div>   
-
-                                <button type="submit" class="btn custom-btn form-control mt-4 mb-3">
-                                    Create
-                                </button>   
+                                <div class="form-floating my-4"> 
+                                    {% if form.subject_about.errors %}
+                                    {{ form.subject_about(class="form-control form-control-lg is-invalid")}} 
+                                    <div class="invalid-feedback">
+                                        {% for error in form.subject_about.errors %}
+                                        <span>{{error}}</span>
+                                        {% endfor %}    
+                                    </div> 
+                                    {% else %}
+                                    {{ form.subject_about(class="form-control", placeholder="Subject About") }} 
+                                    {% endif %}
+                                    {{ form.subject_about.label }}
+                                </div>    
+                                {{ form.submit(class="btn custom-btn form-control mt-4 mb-3") }} 
                             </form>
                         </div>
                     </div>

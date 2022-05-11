@@ -16,24 +16,24 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Subject</th> 
-                            <th scope="col">About this Subject</th> 
-                            <th scope="col">Actions</th>
+                            <th>ID</th>
+                            <th>Subject</th> 
+                            <th>About Subject</th> 
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for subject in subjects %}
                         <tr>
-                            <th scope="row">{{subject.id}}</th>
+                            <td>{{subject.id}}</td>
                             <td>{{subject.name}}</td> 
                             <td>{{subject.about}}</td>  
                             <td>
-                                <div class="actions"> 
+                                <div class=""> 
                                     {% if subject.manager_id == user.id %} 
                                     <a class="btn icon-buttons btn-outline-success" href="/manager/update-subject/{{subject.id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> 
                                     {% else %}
-                                    <button class="btn icon-buttons btn-outline-success" disabled><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                                    <button class="btn icon-buttons btn-outline-danger" disabled><i class="fa fa-ban" aria-hidden="true"></i></button>
                                     {% endif %}
                                 </div>
                             </td>

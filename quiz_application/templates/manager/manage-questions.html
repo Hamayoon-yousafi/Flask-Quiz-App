@@ -10,7 +10,7 @@
                <p class="lead" style="font-weight: 500;">
                 List of all Questions: 
                 </p>
-                <a class="btn btn-outline-success mb-3" href="/manager/create-question">Create Question</a>
+                <a class="btn btn-outline-dark mb-3" href="/manager/create-question">Create Question</a>
            </div>
            {% if questions %}
                 <table class="table">
@@ -35,9 +35,9 @@
                         <td>
                             <div class="actions">  
                                 {% if question.manager_id  == current_user.id %}
-                                    <a class="btn icon-buttons btn-outline-success" href="/manager/update-question/{{question.id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> 
+                                    <a class="btn icon-buttons btn-outline-dark" href="/manager/update-question/{{question.id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> 
                                 {% else %}
-                                    <button class="btn icon-buttons btn-outline-success" disabled><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                                    <button class="btn icon-buttons btn-outline-danger" disabled><i class="fa fa-ban" aria-hidden="true"></i></button>
                                 {% endif %}
                             </div>
                         </td>
