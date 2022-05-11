@@ -10,7 +10,7 @@
                 <p class="lead" style="font-weight: 500;">
                     List of all Subjects: 
                 </p>
-                <a class="btn btn-outline-success mb-3" href="/manager/create-subject">Create Subject</a>
+                <a class="btn btn-outline-dark mb-3" href="/manager/create-subject">Create Subject</a>
             </div>
             {% if subjects %}
                 <table class="table">
@@ -31,9 +31,9 @@
                             <td>
                                 <div class=""> 
                                     {% if subject.manager_id == user.id %} 
-                                    <a class="btn icon-buttons btn-outline-success" href="/manager/update-subject/{{subject.id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> 
+                                    <a class="btn icon-buttons btn-outline-dark" href="/manager/update-subject/{{subject.id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> 
                                     {% else %}
-                                    <button class="btn icon-buttons btn-outline-danger" disabled><i class="fa fa-ban" aria-hidden="true"></i></button>
+                                    <button class="btn icon-buttons btn-outline-dark" disabled><i class="fa fa-ban" aria-hidden="true"></i></button>
                                     {% endif %}
                                 </div>
                             </td>

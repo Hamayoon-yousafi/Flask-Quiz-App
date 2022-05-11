@@ -11,7 +11,7 @@
                 <p class="lead" style="font-weight: 500;">
                     List of all users:
                 </p>
-                <button type="button" class="btn btn-outline-success" style="height: 38px;" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                <button type="button" class="btn btn-outline-dark" style="height: 38px;" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                     Pending Users 
                 </button> 
             </div>
@@ -47,7 +47,7 @@
                                                 <td>{{pending_user.role}}</td>
                                                 <td>
                                                     <div class="actions">  
-                                                        <a class="icon-buttons btn btn-outline-success" href="/admin/update_user/{{pending_user.id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                                        <a class="icon-buttons btn btn-outline-dark" href="/admin/update_user/{{pending_user.id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -79,7 +79,7 @@
                         <td>{{user.email}}</td>
                         <td>{{user.role}}</td>
                         <td> 
-                            <a class="icon-buttons btn btn-outline-success" href="/admin/update_user/{{user.id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> 
+                            <a class="icon-buttons btn btn-outline-dark" href="/admin/update_user/{{user.id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> 
                         </td>
                     </tr>
                     {% endfor %} 

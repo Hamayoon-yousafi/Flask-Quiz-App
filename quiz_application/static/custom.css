@@ -149,6 +149,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  min-width: 54rem;
 }
 
 .portal-control {
