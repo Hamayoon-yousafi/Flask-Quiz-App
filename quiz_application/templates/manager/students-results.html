@@ -12,26 +12,28 @@
             <p class="lead" style="font-weight: 500;">
                 Total results for all the quizes taken by {{student.name}}: 
             </p>
-            <table class="table">
-                <thead>
-                    <tr> 
-                        <th scope="col">Result</th>  
-                        <th scope="col">Out of</th>
-                        <th scope="col">Quiz Taken on</th> 
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for record in marks %}
-                    {% if not subject in current_user.subjects %} 
-                    <tr>
-                        <td>{{record.total_marks.split("out of")[0].strip()}}</td>
-                        <td>{{record.total_marks.split("out of")[1].strip()}}</td>
-                        <td>{{record.quiz_taken_date.strftime("%c")}}</td>  
-                    </tr>
-                    {% endif %}
-                    {% endfor %}
-                </tbody>
-            </table> 
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr> 
+                            <th scope="col">Result</th>  
+                            <th scope="col">Out of</th>
+                            <th scope="col">Quiz Taken on</th> 
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for record in marks %}
+                        {% if not subject in current_user.subjects %} 
+                        <tr>
+                            <td>{{record.total_marks.split("out of")[0].strip()}}</td>
+                            <td>{{record.total_marks.split("out of")[1].strip()}}</td>
+                            <td>{{record.quiz_taken_date.strftime("%c")}}</td>  
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table> 
+            </div>
             {% endif %}  
              
         </div>

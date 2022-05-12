@@ -13,34 +13,36 @@
                 <a class="btn btn-outline-dark mb-3" href="/manager/create-subject">Create Subject</a>
             </div>
             {% if subjects %}
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Subject</th> 
-                            <th>About Subject</th> 
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for subject in subjects %}
-                        <tr>
-                            <td>{{subject.id}}</td>
-                            <td>{{subject.name}}</td> 
-                            <td>{{subject.about}}</td>  
-                            <td>
-                                <div class=""> 
-                                    {% if subject.manager_id == user.id %} 
-                                    <a class="btn icon-buttons btn-outline-dark" href="/manager/update-subject/{{subject.id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> 
-                                    {% else %}
-                                    <button class="btn icon-buttons btn-outline-dark" disabled><i class="fa fa-ban" aria-hidden="true"></i></button>
-                                    {% endif %}
-                                </div>
-                            </td>
-                        </tr>
-                        {% endfor %} 
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Subject</th> 
+                                <th>About Subject</th> 
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for subject in subjects %}
+                            <tr>
+                                <td>{{subject.id}}</td>
+                                <td>{{subject.name}}</td> 
+                                <td>{{subject.about}}</td>  
+                                <td>
+                                    <div class=""> 
+                                        {% if subject.manager_id == user.id %} 
+                                        <a class="btn icon-buttons btn-outline-dark" href="/manager/update-subject/{{subject.id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> 
+                                        {% else %}
+                                        <button class="btn icon-buttons btn-outline-dark" disabled><i class="fa fa-ban" aria-hidden="true"></i></button>
+                                        {% endif %}
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %} 
+                        </tbody>
+                    </table>
+                </div>
             {% else %}
                 <h1 class="display-6">No Subjects Created Yet!</h1>
             {% endif %}

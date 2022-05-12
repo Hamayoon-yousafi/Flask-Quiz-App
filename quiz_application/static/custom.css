@@ -16,7 +16,7 @@ body {
       font-weight: 500;
       text-align: -webkit-match-parent;
       text-transform: capitalize;
-      font-size: 6rem;
+      font-size: 5rem;
       font-family: inherit;
   }
   
@@ -144,32 +144,22 @@ body {
 
 
 .portal-controls-area { 
-  height: auto;
-  padding: 12px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  min-width: 54rem;
+  justify-content: center; 
 }
 
 .portal-control {
-  display: inline-block;
-  overflow-y: auto;
-  flex: 0 0 auto;
-  margin: 8px;
+  margin: 5px;
   height: 320px;
   box-shadow: rgb(0 0 0 / 21%) 0px 5.6px 9.6px 0px, rgb(0 0 0 / 11%) 0px 0.3px 0.9px 0px;
-  padding-top: 32px;
-  padding-bottom: 32px;
-  padding-left: 16px;
-  padding-right: 16px;
-  border-radius: 0;
+  padding: 32px 16px;
   text-align: center;
-  width: 23%;
   transition: all 0.1s;
   overflow: hidden;
   background: white;
-  border-radius: 3px;
+  width: 314px;
+  border-radius: 5px;
 }
 
 .portal-control:hover{
@@ -183,7 +173,7 @@ body {
 
 .control-link, .nav-edit-link, .control-link:hover {
   color: #0078d4;
-
+  font-size: 13px;
 }
 
 .control-link:hover, .nav-edit-link:hover{

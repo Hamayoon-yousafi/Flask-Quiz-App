@@ -3,9 +3,22 @@
 
 {% block content %} 
 <main> 
-    <section class="section-padding">
-        <h1>Welcome {{ user.name }}!</h1>
-        <h4 class="display-5">Your account is pending to be aproved by the Admin, Thank you for your patience.</h4> 
+    <section class="section-padding"> 
+        <h4 class="display-5"></h4>
+        <img src="" alt=""> 
+        <div class="row"> 
+            <div class="col-md-6">  
+                <h1 class="display-6">Welcome {{ user.name }}!</h1> 
+                <p class="lead mt-4"> 
+                    Your account is pending to be aproved by the Admin, Thank you for your patience. 
+                </p>    
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 container-for-svg">
+                <img class="img-thumbnail" src="{{ url_for('static', filename='/icons/waiting.svg') }}" alt="" > 
+            </div> 
+        </div>
     </section> 
 </main>
 {% endblock %}

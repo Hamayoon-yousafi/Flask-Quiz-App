@@ -28,32 +28,34 @@
                                     {% if not pending_users %}
                                     <h1 class="display-6">No Pending users!</h1>
                                     {% else %}
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">ID</th>
-                                                <th scope="col">Username</th>
-                                                <th scope="col">Email</th>
-                                                <th scope="col">Role</th>
-                                                <th scope="col">Actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {% for pending_user in pending_users %}
-                                            <tr>
-                                                <td>{{pending_user.id}}</td>
-                                                <td>{{pending_user.name}}</td>
-                                                <td>{{pending_user.email}}</td>
-                                                <td>{{pending_user.role}}</td>
-                                                <td>
-                                                    <div class="actions">  
-                                                        <a class="icon-buttons btn btn-outline-dark" href="/admin/update_user/{{pending_user.id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            {% endfor %}
-                                        </tbody>
-                                    </table> 
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">ID</th>
+                                                    <th scope="col">Username</th>
+                                                    <th scope="col">Email</th>
+                                                    <th scope="col">Role</th>
+                                                    <th scope="col">Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for pending_user in pending_users %}
+                                                <tr>
+                                                    <td>{{pending_user.id}}</td>
+                                                    <td>{{pending_user.name}}</td>
+                                                    <td>{{pending_user.email}}</td>
+                                                    <td>{{pending_user.role}}</td>
+                                                    <td>
+                                                        <div class="actions">  
+                                                            <a class="icon-buttons btn btn-outline-dark" href="/admin/update_user/{{pending_user.id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table> 
+                                    </div>
                                 {% endif %}
                             </div>
                         </div> 
@@ -61,6 +63,8 @@
                 </div>
             </div>
             <!-- END Modal -->
+
+           <div class="table-responsive">
             <table class="table">
                 <thead>
                     <tr>
@@ -85,6 +89,7 @@
                     {% endfor %} 
                 </tbody>
             </table> 
+           </div>
 
         </div>
     </section> 
