@@ -191,3 +191,8 @@ body {
 .modal-dialog {
   max-width: 800px;
 }
+
+td, th {
+  white-space: nowrap;
+  white-space: nowrap;
+}

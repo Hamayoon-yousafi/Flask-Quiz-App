@@ -27,6 +27,7 @@
                     </div>
                     <div class="modal-body modal-body-custom">
                     <div class="bt-5">  
+                        <div class="table-responsive">
                             <table class="table">
                                 <thead>
                                     <tr>
@@ -54,37 +55,40 @@
                                     {% endif %}
                                     {% endfor %}
                                 </tbody>
-                            </table> 
+                            </table>
+                        </div> 
                     </div>
                     </div> 
                 </div>
                 </div>
             </div>
             {% if subjects  %}
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Subject ID</th>
-                        <th scope="col">Subject Name</th> 
-                        <th scope="col">Subject About</th>   
-                        <th scope="col">Actions</th>
-                    </tr>
-                </thead>
-                <tbody> 
-                    {% for subject in subjects %}
-                    <tr>
-                        <td scope="row">{{subject.id}}</td>
-                        <td>{{subject.name}}</td> 
-                        <td>{{subject.about}}</td>   
-                        <td>
-                            <div class="actions">  
-                                <a onclick="confirmation(event)" class="btn icon-buttons btn-outline-dark" href="/student/drop-course/{{subject.id}}/"><i class="fa fa-times" aria-hidden="true"></i></a> 
-                            </div>
-                        </td>
-                    </tr>
-                    {% endfor %} 
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Subject ID</th>
+                            <th scope="col">Subject Name</th> 
+                            <th scope="col">Subject About</th>   
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody> 
+                        {% for subject in subjects %}
+                        <tr>
+                            <td scope="row">{{subject.id}}</td>
+                            <td>{{subject.name}}</td> 
+                            <td>{{subject.about}}</td>   
+                            <td>
+                                <div class="actions">  
+                                    <a onclick="confirmation(event)" class="btn icon-buttons btn-outline-dark" href="/student/drop-course/{{subject.id}}/"><i class="fa fa-times" aria-hidden="true"></i></a> 
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %} 
+                    </tbody>
+                </table>
+            </div>
             {% else %}
             <h1 class="display-6 mt-3">You have not taken any subjects.</h1>
             {% endif %}
