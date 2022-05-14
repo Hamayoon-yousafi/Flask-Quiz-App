@@ -1,7 +1,7 @@
 import random
 from flask import Blueprint, flash, redirect, render_template, request
 from quiz_application.auth import is_student
-from quiz_application.models import Mark, Subject, User 
+from quiz_application.models import Mark, Subject 
 from . import db
 from flask_login import login_required, current_user 
 

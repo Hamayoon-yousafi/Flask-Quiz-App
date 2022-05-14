@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, RadioField, PasswordField, DateField, SelectField, IntegerField, HiddenField
+from wtforms import StringField, PasswordField, SubmitField, PasswordField, SelectField
 from wtforms.validators import DataRequired, Length, EqualTo, Email
 
 from quiz_application.models import Subject 

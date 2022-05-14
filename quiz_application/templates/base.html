@@ -34,7 +34,8 @@
                 {% if user.is_authenticated  %}
                   <li class="nav-item">
                     {% if user.role == "Admin" %}
-                      <a class="nav-link" href="/admin">Portal</a>
+                      <a class="nav-link" href="/admin">Admin Portal</a>
+                      <a href="/manager" class="nav-link">Manager Portal</a>
                     {% elif user.role == "Manager" %} 
                       <a class="nav-link" href="/manager">Portal</a>
                     {% elif user.role == "Student" %} 

@@ -13,7 +13,6 @@ admin = Blueprint('admin', __name__)
 def users_list():
     users = User.query.all() 
     pending_users = [user for user in users if user.role == "Pending"]  
-    
     return render_template("admin/admin.html", user=current_user ,users = users, pending_users = pending_users)
 
 @admin.route('/delete_user/<int:id>')
@@ -21,7 +20,7 @@ def users_list():
 @is_admin
 def delete(id):
     user_to_delete = User.query.get_or_404(id)
-    if not user_to_delete.role == "Admin":
+    if user_to_delete.role != "Admin":
         try:
             db.session.delete(user_to_delete)
             db.session.commit()
@@ -36,7 +35,7 @@ def delete(id):
 
 @admin.route('/update_user/<int:id>', methods=['GET', 'POST']) 
 @login_required
-@is_admin
+@is_admin 
 def update_user(id):
     user_to_update = User.query.get_or_404(id) 
     form = UpdateUserForm(request.form)  
@@ -50,10 +49,11 @@ def update_user(id):
         user_to_update.name = form.name.data
         user_to_update.email = form.email.data    
         user_to_update.role = form.role.data 
+        assignments(user_to_update, form)
         try:
             db.session.commit()
             flash("User updated successfully!", category='success')
             return redirect('/admin/users-list')
         except:
             flash("Couldn't update user", category="error")
-    return render_template("/admin/update_user.html", user=user_to_update, form=form)
+    return render_template("/admin/update_user.html", user=user_to_update, form=form) 
