@@ -48,8 +48,7 @@ def update_user(id):
     if request.method == "POST" and form.validate():
         user_to_update.name = form.name.data
         user_to_update.email = form.email.data    
-        user_to_update.role = form.role.data 
-        assignments(user_to_update, form)
+        user_to_update.role = form.role.data  
         try:
             db.session.commit()
             flash("User updated successfully!", category='success')
