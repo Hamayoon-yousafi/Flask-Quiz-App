@@ -283,16 +283,17 @@ https://www.tooplate.com/view/2127-little-fashion
     NAVIGATION               
   -----------------------------------------*/
   .navbar {
-    background: var(--white-color);
+    background: #e0e0e0 !important;
     position: fixed;
     top: 0;
     right: 0;
     left: 0;
-    padding: 25px 0;
+    padding: 15px 140px !important;
     z-index: 2;
     will-change: transform;
     transition: transform 300ms linear;
   }
+ 
   
   .navbar span, h2 span, h4 span {
       color: var(--primary-color);
@@ -440,7 +441,7 @@ https://www.tooplate.com/view/2127-little-fashion
  
   
   .section-padding {
-    padding-top: 5.5rem;
+    padding-top: 4.0rem;
     padding-bottom: 7rem;
   }
   

@@ -45,11 +45,11 @@ body {
   }
 
 .message_area{
-    position: absolute;
-      top: 88px;
-      right: 0;
-      left: 0;
-      text-align: center;
+  position: absolute;
+  top: 66px;
+  left: 39%;
+  text-align: center;
+  width: 330px;
   }
   
   .signup {
@@ -183,11 +183,7 @@ body {
 
 .fa-arrow-right {
   margin-left: 5px;
-}
-
-.navbar {
-  padding: 25px !important;
-}
+} 
 
 .modal-dialog {
   max-width: 800px;
