@@ -30,6 +30,8 @@ def admin():
 @views.route('/pending_user')
 @login_required
 def pending():
+    if not current_user.role == "Pending":
+        return redirecting_users(current_user.role)
     return render_template("sharedviews/pendingUser.html", user=current_user)
 
 @views.route('/manager')  

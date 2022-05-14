@@ -8,10 +8,17 @@
         <img src="" alt=""> 
         <div class="row"> 
             <div class="col-md-6">  
+                {% if current_user.role == "Pending" %}
                 <h1 class="display-6">Welcome {{ user.name }}!</h1> 
                 <p class="lead mt-4"> 
                     Your account is pending to be aproved by the Admin, Thank you for your patience. 
-                </p>    
+                </p> 
+                {% else %}
+                <h1 class="display-6">Welcome {{ user.name }}!</h1> 
+                <p class="lead mt-4"> 
+                    Your account has been approved. You may now access your portal. Thanks!  
+                </p> 
+                {% endif %}   
             </div>
         </div>
         <div class="row">

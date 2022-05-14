@@ -24,11 +24,14 @@ def create_subject():
     if request.method == 'POST' and form.validate():
         subject_name = form.subject_name.data
         about = form.subject_about.data
-        new_subject = Subject (name=subject_name, about=about, manager_id=current_user.id)
-        db.session.add(new_subject)
-        db.session.commit()
-        flash("Successfully created subject!", category='success') 
-        return redirect('/manager/manage-subjects')
+        if not Subject.query.filter_by(name=subject_name).first():
+            new_subject = Subject (name=subject_name, about=about, manager_id=current_user.id)
+            db.session.add(new_subject)
+            db.session.commit()
+            flash("Successfully created subject!", category='success') 
+            return redirect('/manager/manage-subjects')
+        else:
+            flash("A subject with such name already exists!", category='error')
     return render_template('/manager/create-subject.html', user=current_user, form=form)
 
 @manager.route('update-subject/<int:id>', methods=['GET', 'POST'])
@@ -42,14 +45,13 @@ def update_subject(id):
         return redirect("/manager/manage-subjects") 
     if request.method == 'POST' and form.validate():
         subject_to_update.name = form.subject_name.data
-        subject_to_update.about = form.subject_about.data
+        subject_to_update.about = form.subject_about.data 
         try:
             db.session.commit()
             flash("Subject updated successfully!", category='success')
             return redirect('/manager/manage-subjects')
         except:
             flash("Couldn't update subject", category="error")  
-
     return render_template('/manager/update-subject.html', user=current_user, subject=subject_to_update, form=form)
      
 @manager.route('delete-subject/<int:id>')
@@ -90,11 +92,14 @@ def create_question():
         choice_two = form.choice_two.data
         choice_three = form.choice_three.data
         answer = form.correct_answer.data
-        new_question = Question(question=question, subject_id=subject_id, choice_one=choice_one, choice_two=choice_two, choice_three=choice_three, answer=answer, manager_id=current_user.id)
-        db.session.add(new_question)
-        db.session.commit()
-        flash("Successfuly created the question!", category='success') 
-        return redirect('/manager/manage-questions')
+        if not Question.query.filter_by(question=question).first():
+            new_question = Question(question=question, subject_id=subject_id, choice_one=choice_one, choice_two=choice_two, choice_three=choice_three, answer=answer, manager_id=current_user.id)
+            db.session.add(new_question)
+            db.session.commit()
+            flash("Successfuly created the question!", category='success') 
+            return redirect('/manager/manage-questions')
+        else:
+            flash("This question already exists!", category="error")
     return render_template("manager/create-question.html", user=current_user, form=form)
 
 @manager.route("update-question/<int:id>", methods=['GET', 'POST'])

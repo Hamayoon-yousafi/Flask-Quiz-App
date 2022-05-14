@@ -67,7 +67,7 @@
    <div class="mt-5">
     <div class="message_area">
       {% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
+      {% if messages %}
       {% for category, message in messages %}
       {% if category == 'error' %}
       <div class="alert alert-danger alter-dismissable fade show" role="alert">
