@@ -48,9 +48,9 @@ body {
 
 .message_area{
   position: absolute;
-  top: 66px;
   text-align: center;
   width: 100%;
+  top: 66px;
   }
   
   .signup {
