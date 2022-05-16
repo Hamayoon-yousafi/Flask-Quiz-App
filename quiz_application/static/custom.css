@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
+
 body {
     background: #e5e5e542;
 }
@@ -47,9 +49,8 @@ body {
 .message_area{
   position: absolute;
   top: 66px;
-  left: 39%;
   text-align: center;
-  width: 330px;
+  width: 100%;
   }
   
   .signup {
