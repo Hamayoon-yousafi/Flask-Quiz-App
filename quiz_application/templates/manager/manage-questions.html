@@ -12,41 +12,44 @@
                 </p>
                 <a class="btn btn-outline-dark mb-3" href="/manager/create-question">Create Question</a>
            </div>
-           {% if questions %}
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Question</th> 
-                                <th scope="col">Subject</th>  
-                                <th scope="col">Choices</th>  
-                                <th scope="col">Correct Answer</th> 
-                                <th scope="col">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for question in questions %}
-                            <tr>
-                                <th scope="row">{{question.id}}</th>
-                                <td>{{question.question}}</td> 
-                                <td>{{question.subject.name}}</td> 
-                                <td>{{question.choice_one}}, {{question.choice_two}}, {{question.choice_three}}</td>  
-                                <td>{{question.answer}}</td> 
-                                <td>
-                                    <div class="actions">  
-                                        {% if question.manager_id  == current_user.id %}
-                                            <a class="btn icon-buttons btn-outline-dark" href="/manager/update-question/{{question.id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> 
-                                        {% else %}
-                                            <button class="btn icon-buttons btn-outline-dark" disabled><i class="fa fa-ban" aria-hidden="true"></i></button>
-                                        {% endif %}
-                                    </div>
-                                </td>
-                            </tr>
-                            {% endfor %} 
-                        </tbody>
-                    </table>
-                </div>
+           {% if questions %} 
+                    <!-- table -->
+                    <div class="table-responsive-vertical shadow-z-1">
+                        <!-- Table starts here -->
+                            <table id="table" class="table table-hover table-mc-light-blue">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Question</th> 
+                                        <th scope="col">Subject</th>  
+                                        <th scope="col">Choices</th>  
+                                        <th scope="col">Correct Answer</th> 
+                                        <th scope="col">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for question in questions %} 
+                                <tr>
+                                    <td data-title="Question ID">{{question.id}}</td>
+                                    <td data-title="Question">{{question.question}}</td>
+                                    <td data-title="Subject">{{question.subject.name}}</td>
+                                    <td data-title="Choices">{{question.choice_one}}, {{question.choice_two}}, {{question.choice_three}}</td>
+                                    <td data-title="Answer">{{question.answer}}</td>
+                                    <td data-title="Actions">
+                                        <div class="actions">  
+                                            {% if question.manager_id  == current_user.id %}
+                                                <a class="btn icon-buttons btn-outline-dark" href="/manager/update-question/{{question.id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> 
+                                            {% else %}
+                                                <button class="btn icon-buttons btn-outline-dark" disabled><i class="fa fa-ban" aria-hidden="true"></i></button>
+                                            {% endif %}
+                                        </div>
+                                     </td>
+                                </tr> 
+                                {% endfor %}
+                            </tbody>
+                        </table>              
+                    </div> 
+                    <!-- table end -->
             {% else %}
                 <h1 class="display-6">No Questions Created yet!</h1>
             {% endif %}

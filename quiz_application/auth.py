@@ -15,7 +15,7 @@ def login():
         user = User.query.filter_by(email=form.email.data).first()
         if user and check_password_hash(user.password, form.password.data): 
             flash("Logged In Successfully!", category="success")
-            login_user(user, remember=True)
+            login_user(user)
             return redirecting_users(user.role)
         else:
             flash('Wrong password or email!', category='error') 
@@ -86,3 +86,6 @@ def is_student(f):
             flash("Unauthorized", category="error")
             return redirect("/") 
     return wrap
+
+
+#, remember=True

@@ -28,68 +28,71 @@
                                     {% if not pending_users %}
                                     <h1 class="display-6">No Pending users!</h1>
                                     {% else %}
-                                    <div class="table-responsive">
-                                        <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">ID</th>
-                                                    <th scope="col">Username</th>
-                                                    <th scope="col">Email</th>
-                                                    <th scope="col">Role</th>
-                                                    <th scope="col">Actions</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                {% for pending_user in pending_users %}
-                                                <tr>
-                                                    <td>{{pending_user.id}}</td>
-                                                    <td>{{pending_user.name}}</td>
-                                                    <td>{{pending_user.email}}</td>
-                                                    <td>{{pending_user.role}}</td>
-                                                    <td>
-                                                        <div class="actions">  
-                                                            <a class="icon-buttons btn btn-outline-dark" href="/admin/update_user/{{pending_user.id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                {% endfor %}
-                                            </tbody>
-                                        </table> 
-                                    </div>
+                                    <!-- table -->
+                                    <div class="table-responsive-vertical shadow-z-1">
+                                        <!-- Table starts here -->
+                                            <table id="table" class="table table-hover table-mc-light-blue">
+                                                <thead>
+                                                    <tr>
+                                                        <th>User ID</th>
+                                                        <th>User Name</th>
+                                                        <th>Email</th>
+                                                        <th>Role</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for pending_user in pending_users %}
+                                                    <tr>
+                                                        <td data-title="User ID">{{pending_user.id}}</td>
+                                                        <td data-title="User Name">{{pending_user.name}}</td>
+                                                        <td data-title="Email">{{pending_user.email}}</td>
+                                                        <td data-title="Role">{{pending_user.role}}</td>
+                                                        <td data-title="Actions">
+                                                            <a class="icon-buttons btn btn-outline-dark" href="/admin/update_user/{{pending_user.id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> 
+                                                        </td>
+                                                    </tr>
+                                                    {% endfor %} 
+                                                </tbody>
+                                            </table>              
+                                    </div> 
+                                    <!-- table end -->
                                 {% endif %}
                             </div>
                         </div> 
                     </div>
                 </div>
             </div>
-            <!-- END Modal -->
-
-           <div class="table-responsive">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Username</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Role</th>
-                        <th scope="col">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for user in users %}
-                    <tr>
-                        <td>{{user.id}}</td>
-                        <td>{{user.name}}</td>
-                        <td>{{user.email}}</td>
-                        <td>{{user.role}}</td>
-                        <td> 
-                            <a class="icon-buttons btn btn-outline-dark" href="/admin/update_user/{{user.id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> 
-                        </td>
-                    </tr>
-                    {% endfor %} 
-                </tbody>
-            </table> 
-           </div>
+            <!-- END Modal --> 
+            <!-- table -->
+            <div class="table-responsive-vertical shadow-z-1">
+                <!-- Table starts here -->
+                    <table id="table" class="table table-hover table-mc-light-blue">
+                        <thead>
+                            <tr>
+                                <th>User ID</th>
+                                <th>User Name</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for user in users %} 
+                            <tr>
+                                <td data-title="User ID">{{user.id}}</td>
+                                <td data-title="User Name">{{user.name}}</td>
+                                <td data-title="Email">{{user.email}}</td>
+                                <td data-title="Role">{{user.role}}</td>
+                                <td data-title="Actions">
+                                    <a class="icon-buttons btn btn-outline-dark" href="/admin/update_user/{{user.id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> 
+                                </td>
+                            </tr>
+                            {% endfor %} 
+                        </tbody>
+                    </table>              
+            </div> 
+            <!-- table end -->
 
         </div>
     </section> 

@@ -5,95 +5,107 @@
 <main> 
     <section class="section-padding">  
         <h1 class="display-4 mb-5">Manage your subjects</h1>  
-        <div class="table-design bt-5">
-            <div class="table-design-header">
-                <p class="lead" style="font-weight: 500;">
-                    List of subjects you have selected: 
-                </p>
-                 <!-- Button trigger modal -->
-                <div>
-                    <button type="button" class="btn btn-outline-dark mt-3 mr-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                        Select 
-                    </button> 
-                </div>
-            </div>
+        <div class="table-design bt-5"> 
             <!-- Modal -->
             <div class="modal modal-custom fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog">
-                <div class="modal-content modal-content-custom ">
-                    <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">All Available Subjects:</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body modal-body-custom">
-                    <div class="bt-5">  
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Subject ID</th>
-                                        <th scope="col">Subject Name</th> 
-                                        <th scope="col">Subject About</th>   
-                                        <th scope="col">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {% for subject in all_subjects %}
-                                    {% if not subject in current_user.subjects %} 
-                                    <tr>
-                                        <td scope="row">{{subject.id}}</td>
-                                        <td>{{subject.name}}</td> 
-                                        <td>{{subject.about}}</td>   
-                                        <td>
-                                            <div class="actions">  
-                                                <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-                                                    <a class="btn btn-outline-dark" href="enrol/{{subject.id}}">Select</a> 
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    {% endif %}
-                                    {% endfor %}
-                                </tbody>
-                            </table>
+                    <div class="modal-content modal-content-custom ">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">All Available Subjects:</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body modal-body-custom">
+                            <div class="bt-5">  
+                                <!-- table -->
+                                <div class="table-responsive-vertical shadow-z-1">
+                                    <!-- Table starts here -->
+                                        <table id="table" class="table table-hover table-mc-light-blue">
+                                            <thead>
+                                                <tr>
+                                                    <th>Subject ID</th>
+                                                    <th>Subject Name</th>
+                                                    <th>Subject About</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% for subject in all_subjects %}
+                                            {% if not subject in current_user.subjects %} 
+                                            <tr>
+                                                <td data-title="Subject ID">{{subject.id}}</td>
+                                                <td data-title="Subject Name">{{subject.name}}</td>
+                                                <td data-title="Subject About">{{subject.about}}</td>
+                                                <td data-title="Actions">
+                                                        <div class="actions">  
+                                                        <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                                                            <a class="btn btn-outline-dark" href="enrol/{{subject.id}}">Select</a> 
+                                                        </div>
+                                                    </div>
+                                                 </td>
+                                            </tr>
+                                            {% endif %}
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>              
+                                </div> 
+                                <!-- table end -->
+                            </div>
                         </div> 
                     </div>
-                    </div> 
-                </div>
                 </div>
             </div>
             {% if subjects  %}
-            <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Subject ID</th>
-                            <th scope="col">Subject Name</th> 
-                            <th scope="col">Subject About</th>   
-                            <th scope="col">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody> 
-                        {% for subject in subjects %}
-                        <tr>
-                            <td scope="row">{{subject.id}}</td>
-                            <td>{{subject.name}}</td> 
-                            <td>{{subject.about}}</td>   
-                            <td>
-                                <div class="actions">  
-                                    <a onclick="confirmation(event)" class="btn icon-buttons btn-outline-dark" href="/student/drop-course/{{subject.id}}/"><i class="fa fa-times" aria-hidden="true"></i></a> 
-                                </div>
-                            </td>
-                        </tr>
-                        {% endfor %} 
-                    </tbody>
-                </table>
+            <div id="demo">
+                <div class="table-design-header">
+                    <p class="lead" style="font-weight: 500;">
+                        List of subjects you have selected: 
+                    </p>
+                     <!-- Button trigger modal -->
+                    <div>
+                        <button type="button" class="btn btn-outline-dark mr-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                            Select 
+                        </button> 
+                    </div>
+                </div>
+                
+                <!-- Responsive table starts here -->
+                <!-- For correct display on small screens you must add 'data-title' to each 'td' in your table -->
+                <div class="table-responsive-vertical shadow-z-1">
+                <!-- Table starts here -->
+                    <table id="table" class="table table-hover table-mc-light-blue">
+                        <thead>
+                          <tr>
+                            <th>Subject ID</th>
+                            <th>Subject Name</th>
+                            <th>Subject About</th>
+                            <th>Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            {% for subject in subjects %}
+                            <tr>
+                                <td data-title="Subject ID">{{subject.id}}</td>
+                                <td data-title="Subject Name">{{subject.name}}</td>
+                                <td data-title="Subject About">{{subject.about}}</td>
+                                <td data-title="Actions">
+                                    <div class="actions">  
+                                        <a onclick="confirmation(event)" class="btn icon-buttons btn-outline-dark" href="/student/drop-course/{{subject.id}}/"><i class="fa fa-times" aria-hidden="true"></i></a> 
+                                    </div>
+                                </td>
+                              </tr>
+                            {% endfor %}
+                        </tbody>
+                      </table>
+                </div>
             </div>
+                
             {% else %}
             <h1 class="display-6 mt-3">You have not taken any subjects.</h1>
+            <button type="button" class="btn btn-outline-dark mr-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                Select 
+            </button> 
             {% endif %}
         </div>
-
     </section> 
 </main>
 {% endblock %}

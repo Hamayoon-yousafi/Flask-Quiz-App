@@ -12,24 +12,26 @@
                 </p>
                 <a class="btn btn-outline-dark mb-3" href="/manager/create-subject">Create Subject</a>
             </div>
-            {% if subjects %}
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
+            {% if subjects %}   
+                 <!-- table -->
+                 <div class="table-responsive-vertical shadow-z-1">
+                    <!-- Table starts here -->
+                        <table id="table" class="table table-hover table-mc-light-blue">
+                            <thead>
+                                <tr>
+                                    <th>Subject ID</th>
+                                    <th>Subject Name</th>
+                                    <th>Subject About</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for subject in subjects %}  
                             <tr>
-                                <th>ID</th>
-                                <th>Subject</th> 
-                                <th>About Subject</th> 
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for subject in subjects %}
-                            <tr>
-                                <td>{{subject.id}}</td>
-                                <td>{{subject.name}}</td> 
-                                <td>{{subject.about}}</td>  
-                                <td>
+                                <td data-title="Subject ID">{{subject.id}}</td>
+                                <td data-title="Subject Name">{{subject.name}}</td>
+                                <td data-title="Subject About">{{subject.about}}</td>
+                                <td data-title="Actions">
                                     <div class=""> 
                                         {% if subject.manager_id == user.id %} 
                                         <a class="btn icon-buttons btn-outline-dark" href="/manager/update-subject/{{subject.id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> 
@@ -37,12 +39,13 @@
                                         <button class="btn icon-buttons btn-outline-dark" disabled><i class="fa fa-ban" aria-hidden="true"></i></button>
                                         {% endif %}
                                     </div>
-                                </td>
+                                 </td>
                             </tr>
                             {% endfor %} 
                         </tbody>
-                    </table>
-                </div>
+                    </table>              
+                </div> 
+                <!-- table end -->
             {% else %}
                 <h1 class="display-6">No Subjects Created Yet!</h1>
             {% endif %}

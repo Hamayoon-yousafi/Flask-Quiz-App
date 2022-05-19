@@ -11,33 +11,34 @@
             {% else %}
             <p class="lead" style="font-weight: 500;">
                 Total results for all the quizes taken by {{student.name}}: 
-            </p>
-            <div class="table-responsive">
-                <table class="table">
+            </p> 
+            <!-- table -->
+            <div class="table-responsive-vertical shadow-z-1">
+                <!-- Table starts here -->
+                <table id="table" class="table table-hover table-mc-light-blue">
                     <thead>
-                        <tr> 
-                            <th scope="col">Result</th>  
-                            <th scope="col">Out of</th>
-                            <th scope="col">Quiz Taken on</th> 
+                        <tr>
+                            <th>Result ID</th>
+                            <th>Total Correct Answers</th>
+                            <th>Total Questions</th>
+                            <th>Quiz Date</th> 
                         </tr>
                     </thead>
                     <tbody>
                         {% for record in marks %}
-                        {% if not subject in current_user.subjects %} 
                         <tr>
-                            <td>{{record.total_marks.split("out of")[0].strip()}}</td>
-                            <td>{{record.total_marks.split("out of")[1].strip()}}</td>
-                            <td>{{record.quiz_taken_date.strftime("%c")}}</td>  
-                        </tr>
-                        {% endif %}
+                            <td data-title="Result ID">{{record.id}}</td>
+                            <td data-title="Total Correct Answers">{{record.total_marks.split("out of")[0].strip()}}</td>
+                            <td data-title="Total Questions">{{record.total_marks.split("out of")[1].strip()}}</td>
+                            <td data-title="Quiz Date">{{record.quiz_taken_date.strftime("%c")}}</td> 
+                        </tr> 
                         {% endfor %}
                     </tbody>
-                </table> 
-            </div>
-            {% endif %}  
-             
+                </table>              
+            </div> 
+            <!-- table end -->
+            {% endif %}    
         </div>
-
     </section> 
 </main>
 {% endblock %}

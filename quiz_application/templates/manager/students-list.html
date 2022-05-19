@@ -9,29 +9,34 @@
             <p class="lead" style="font-weight: 500;">
                 Below is full list of students. click view to see quiz results:
             </p>
-            {% if students %}
-                <div class="table-responsive">
-                    <table class="table">
+            {% if students %} 
+                <!-- table -->
+                <div class="table-responsive-vertical shadow-z-1">
+                    <!-- Table starts here -->
+                    <table id="table" class="table table-hover table-mc-light-blue">
                         <thead>
-                            <tr> 
+                            <tr>
+                                <th scope="col">ID</th>  
                                 <th scope="col">Name</th>  
                                 <th scope="col">Email</th>
                                 <th scope="col">Quiz Results</th> 
                             </tr>
                         </thead>
                         <tbody>
-                            {% for student in students %} 
+                        {% for student in students %}
                             <tr>
-                                <td>{{student.name}}</td>
-                                <td>{{student.email}}</td> 
-                                <td>
+                                <td data-title="ID">{{student.id}}</td>
+                                <td data-title="Name">{{student.name}}</td>
+                                <td data-title="Email">{{student.email}}</td> 
+                                <td data-title="Quiz Results">
                                     <a href="/manager/students-list/results/{{student.id}}" class="btn icon-buttons btn-outline-dark"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                </td> 
+                                 </td>
                             </tr> 
                             {% endfor %}
                         </tbody>
-                    </table> 
-                </div>
+                    </table>              
+                </div> 
+                <!-- table end -->
             {% else %}
                 <h1 class="display-6">No students!</h1>
             {% endif %}  
