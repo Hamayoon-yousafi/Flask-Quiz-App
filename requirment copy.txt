@@ -119,6 +119,7 @@ ufw
 unattended-upgrades
 urllib3
 usb-creator
+vatnumber
 virtualenv
 vobject
 wadllib
